@@ -1,132 +1,57 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/KTVBmApB)
-# Revou Student Portfolio
-
 # Portfolio Website – Fakhridho Gunawan
 
-Ini adalah website portfolio pribadi yang saya bangun sebagai bagian dari proses pembelajaran dalam membangun website menggunakan HTML dan CSS (serta Tailwind CSS). Website ini menampilkan profil, perjalanan karier, project-project yang pernah saya buat, dan form kontak agar pengunjung dapat menghubungi saya.
+Website portfolio pribadi yang dibuat menggunakan HTML, Tailwind CSS, dan JavaScript. Website ini menampilkan profil, project yang pernah dibuat, serta formulir kontak untuk pengunjung.
 
-Website ini terus diperbarui seiring berkembangnya kemampuan saya dalam pengembangan web front-end.
+## 🚀 Fitur
 
-## 🚀 Overview
+- Home / Hero: perkenalan singkat.
+- About: profil dan perjalanan belajar.
+- Projects: daftar project yang pernah dibuat.
+- Contact: formulir kontak menggunakan Web3Forms.
+- Responsive design untuk desktop dan perangkat mobile.
+- Hamburger menu untuk navigasi mobile.
 
-Website portfolio ini terdiri dari beberapa section utama:
+## 🛠️ Teknologi
 
-- Home / Hero – Menampilkan perkenalan singkat dan foto diri.
+- HTML5
+- Tailwind CSS
+- JavaScript
+- Git dan GitHub
+- GitHub Pages
+- Web3Forms
 
-- About – Berisi perjalanan saya dalam dunia Software Engineering dan sedikit tentang kepribadian saya.
+## 🌐 Demo Website
 
-- Projects – Kumpulan project sederhana yang saya buat untuk melatih kemampuan front-end.
+[**Lihat Portfolio Online**](https://fakhridhogunawan73.github.io/)
 
-- Contact – Form untuk menghubungi saya, lengkap dengan input nama, email, dan pesan.
+## 📁 Struktur Project
 
-- Footer – Menampilkan informasi kontak, navigasi, dan social links.
-
-Website ini dibuat dengan struktur HTML yang rapi serta styling menggunakan CSS dan Tailwind CSS untuk menghasilkan layout yang modern dan responsif.
-
-## ⭐ Features Implemented
-
-- Struktur HTML lengkap dan semantik (header, section, footer, dll.)
-
-- Navigasi bekerja dengan baik
-
-- Konten sudah tertata: Home, About, Projects, Contact
-
-- Hosted di GitHub Pages
-
-- Styling menggunakan Tailwind CSS dan custom CSS
-
-- Desain responsif untuk tampilan mobile, tablet, dan desktop
-
-- Efek hover pada tombol dan social icons
-
-- Layout grid pada section Projects
-
-- Warna, typography, dan spacing yang konsisten
-
-- Style form contact agar mudah dibaca dan digunakan
-
-- Penggunaan border, shadow, dan background untuk mempercantik UI
-
-## 🛠️ Technologies Used
-
-Website ini dibuat menggunakan teknologi berikut:
-
-HTML5 – Struktur konten dan layout utama
-
-CSS3 – Custom styling tambahan
-
-Tailwind CSS – Utility-first styling untuk mempercepat proses development
-
-Git & GitHub – Version control dan hosting repository
-
-GitHub Pages – Hosting website (deployment)
-
-## 🌐 Demo Website 
-
-| Deskripsi                                       | Link                                              |
-| ----------------------------------------------- | ------------------------------------------------- |
-| **Deployed Website** | https://revou-fsse-oct25.github.io/milestone-1-FakhridhoGunawan73/             |
-| **Source Code Repository**                      | https://github.com/FakhridhoGunawan73         |
-
-## 🖼️ Screenshots
-
-Berikut adalah tampilan dari website portfolio ini:
-
-📌 Homepage
-
-![alt text](assets/screenshots/Home.png)
-
-📌 About Section
-
-![alt text](assets/screenshots/About.png)
-
-📌 Projects Section
-
-![alt text](assets/screenshots/Projects.png)
-
-📌 Contact Section
-
-![alt text](assets/screenshots/Contact.png)
-
-## 📁 Project Structure
-
-Berikut struktur folder yang digunakan dalam project ini:
-
-```bash
-📁 milestone-1-Fakhridhogunawan73
-│
-├── 📁 assets
-│ ├── 📁 document
-│ ├── 📁 font
-│ ├── 📁 images
-│ └── 📁 screenshots
-│
-├── 📄 index.html
-└── 📄 README.md
+```text
+.
+├── assets/
+│   └── images/
+├── index.html
+├── script.js
+└── README.md
 ```
 
-## 📌 How to Run the Project Locally
+## 💻 Menjalankan Project
 
-Clone repository:
-```bash
-git clone https://revou-fsse-oct25.github.io/milestone-1-FakhridhoGunawan73/
-```
+1. Clone repository:
 
-Buka folder project:
-```bash
-cd nama-repo
-```
+   ```bash
+   git clone https://github.com/FakhridhoGunawan73/fakhridhogunawan73.github.io.git
+   ```
 
-Buka file:
+2. Masuk ke folder project:
 
-```bash
-index.html
-```
+   ```bash
+   cd fakhridhogunawan73.github.io
+   ```
 
-## 📬 Contact
+3. Buka folder tersebut di VS Code.
+4. Jalankan `index.html` menggunakan ekstensi Live Server.
 
-Jika ingin berdiskusi, bertanya, atau bekerja sama dengan saya, silakan hubungi:
+## 📬 Kontak
 
-Email: fakhridhogunawan01@gmail.com
-
-Lokasi: Bangkinang, Riau
+Silakan hubungi saya melalui formulir kontak yang tersedia di website portfolio.
