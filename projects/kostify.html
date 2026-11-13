@@ -1,0 +1,1288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kostify | Project Case Study</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body
+    class="antialiased bg-[#F5F9FF] dark:bg-[#07111F] text-gray-900 dark:text-gray-200 transition-colors duration-300"
+  >
+    <!-- =========================
+       NAVBAR
+  ========================== -->
+    <nav
+      class="fixed top-0 w-full glass-card bg-white/70 dark:bg-[#07111F]/75 border-b border-gray-200 dark:border-white/10 z-50 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="../index.html#home"
+            class="font-display text-2xl font-bold tracking-wider text-gray-900 dark:text-white"
+          >
+            Fakhridho<span class="text-brand-light">.</span>
+          </a>
+
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              href="../index.html#home"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Home<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="../index.html#about"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              About<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="../index.html#skills"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Skills<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="../index.html#projects"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Projects<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="../index.html#experience"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Experience<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="../index.html#contact"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Contact<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+
+            <!-- Theme Toggle Button -->
+            <button
+              id="theme-toggle"
+              class="p-2 ml-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors focus:outline-none"
+            >
+              <i class="fas fa-moon text-lg" id="theme-icon"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center md:hidden">
+            <button
+              id="theme-toggle-mobile"
+              class="p-2 mr-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors focus:outline-none"
+            >
+              <i class="fas fa-moon text-lg" id="theme-icon-mobile"></i>
+            </button>
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-900 dark:text-white focus:outline-none p-2"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 dark:border-white/10 pt-4"
+        >
+          <a
+            href="../index.html#home"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Home</a
+          >
+          <a
+            href="../index.html#about"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >About</a
+          >
+          <a
+            href="../index.html#skills"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Skills</a
+          >
+          <a
+            href="../index.html#projects"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Projects</a
+          >
+          <a
+            href="../index.html#experience"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Experience</a
+          >
+          <a
+            href="../index.html#contact"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- =========================
+       HERO
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-4xl">
+        <div class="mb-5">
+          <a
+            href="../index.html#projects"
+            class="group inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white/60 px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:border-blue-400/40 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
+          >
+            <span
+              class="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 transition-all duration-300 group-hover:bg-blue-100 dark:bg-white/10 dark:group-hover:bg-blue-500/20"
+            >
+              <i
+                class="fa-solid fa-arrow-left text-xs transition-transform duration-300 group-hover:-translate-x-0.5"
+              ></i>
+            </span>
+
+            <span>Back to Home</span>
+          </a>
+        </div>
+        <div
+          class="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2"
+        >
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+
+          <span class="text-blue-300 text-sm font-medium">
+            Full Stack Web Application
+          </span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mt-8">
+          Kostify<span class="text-blue-400">.</span>
+        </h1>
+
+        <p
+          class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed mt-8 max-w-3xl"
+        >
+          A full-stack boarding house booking management application that
+          connects tenants and property owners through a digital platform.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-10">
+          <a
+            href="https://crack-fe-fakhridhogunawan73.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl bg-blue-500 px-6 py-4 font-semibold hover:bg-blue-600 transition"
+          >
+            Live Demo
+            <span>↗</span>
+          </a>
+
+          <!-- GANTI URL DENGAN REPOSITORY FRONTEND -->
+          <a
+            href="https://github.com/Revou-FSSE-Oct25/crack-fe-FakhridhoGunawan73"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-gray-300 dark:border-white/15 text-gray-800 dark:text-white px-6 py-4 font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+          >
+            Frontend Repository
+            <span>↗</span>
+          </a>
+
+          <!-- GANTI URL DENGAN REPOSITORY BACKEND -->
+          <a
+            href="https://github.com/Revou-FSSE-Oct25/crack-be-FakhridhoGunawan73"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-gray-300 dark:border-white/15 text-gray-800 dark:text-white px-6 py-4 font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+          >
+            Backend Repository
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT INFORMATION -->
+      <div
+        class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 border-y border-white/10 py-8"
+      >
+        <div>
+          <p class="text-gray-500 text-sm mb-2">Project Type</p>
+          <p class="font-semibold">Full Stack Web Application</p>
+        </div>
+
+        <div>
+          <p class="text-gray-500 text-sm mb-2">Frontend</p>
+          <p class="font-semibold">Next.js & TypeScript</p>
+        </div>
+
+        <div>
+          <p class="text-gray-500 text-sm mb-2">Backend</p>
+          <p class="font-semibold">NestJS & Prisma</p>
+        </div>
+
+        <div>
+          <p class="text-gray-500 text-sm mb-2">Database</p>
+          <p class="font-semibold">PostgreSQL</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       PROJECT OVERVIEW
+  ========================== -->
+    <section id="overview" class="max-w-7xl mx-auto px-6 py-20">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <p class="text-gray-900 dark:text-gray-900 dark:text-white">
+            Overview
+          </p>
+
+          <h2 class="text-3xl md:text-4xl font-bold mt-4">About the Project</h2>
+        </div>
+
+        <div class="text-gray-600 dark:text-gray-600 dark:text-gray-400">
+          <p>
+            Kostify is a full-stack web application developed to simplify the
+            process of discovering boarding houses, managing rooms, and handling
+            booking requests between tenants and property owners.
+          </p>
+
+          <p>
+            The application provides a centralized platform where users can
+            browse boarding house listings, search for suitable accommodations,
+            and submit booking requests.
+          </p>
+
+          <p>
+            Property owners can manage their boarding houses, rooms, and booking
+            requests through dedicated management features.
+          </p>
+
+          <p>
+            The project was built to demonstrate the implementation of frontend
+            development, backend development, database integration,
+            authentication, authorization, and application deployment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       PROJECT OBJECTIVES
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Objectives
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">Project Goals</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <span class="text-blue-400 text-3xl">01</span>
+
+          <h3 class="font-bold text-xl mt-6 mb-4">Simplify Discovery</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Provide a convenient way for users to browse and search boarding
+            houses based on available information.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <span class="text-blue-400 text-3xl">02</span>
+
+          <h3 class="font-bold text-xl mt-6 mb-4">Improve Management</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Provide property owners with tools to manage boarding houses, rooms,
+            and booking requests.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <span class="text-blue-400 text-3xl">03</span>
+
+          <h3 class="font-bold text-xl mt-6 mb-4">
+            Apply Full Stack Development
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Build an application integrating frontend, backend, database,
+            authentication, and deployment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       PROBLEM & SOLUTION
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Problem & Solution
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">
+          What Problem Does Kostify Solve?
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- PROBLEM -->
+        <div
+          class="rounded-2xl border border-red-500/20 bg-red-500/[0.04] p-8 md:p-10"
+        >
+          <div class="text-red-400 font-semibold mb-6">THE PROBLEM</div>
+
+          <h3 class="text-2xl font-bold mb-6">
+            Boarding House Discovery and Management
+          </h3>
+
+          <ul
+            class="space-y-5 text-gray-600 dark:text-gray-400 leading-relaxed"
+          >
+            <li>
+              <span class="text-red-400 mr-2">•</span>
+              Finding suitable boarding houses can require users to browse
+              information from multiple sources.
+            </li>
+
+            <li>
+              <span class="text-red-400 mr-2">•</span>
+              Property owners need a convenient way to manage boarding house and
+              room information.
+            </li>
+
+            <li>
+              <span class="text-red-400 mr-2">•</span>
+              Booking requests need to be organized so tenants and owners can
+              track their status.
+            </li>
+          </ul>
+        </div>
+
+        <!-- SOLUTION -->
+        <div
+          class="rounded-2xl border border-blue-500/20 bg-blue-500/[0.04] p-8 md:p-10"
+        >
+          <div class="text-blue-400 font-semibold mb-6">THE SOLUTION</div>
+
+          <h3 class="text-2xl font-bold mb-6">
+            A Centralized Booking Platform
+          </h3>
+
+          <ul
+            class="space-y-5 text-gray-600 dark:text-gray-400 leading-relaxed"
+          >
+            <li>
+              <span class="text-blue-400 mr-2">•</span>
+              Provide boarding house listings and search functionality in one
+              application.
+            </li>
+
+            <li>
+              <span class="text-blue-400 mr-2">•</span>
+              Provide property and room management functionality for owners.
+            </li>
+
+            <li>
+              <span class="text-blue-400 mr-2">•</span>
+              Provide booking workflows with status tracking and approval or
+              rejection.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       USER ROLES
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          User Roles
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">
+          Role-Based Application
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- USER -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <div
+            class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-6"
+          >
+            U
+          </div>
+
+          <h3 class="text-xl font-bold mb-4">User / Tenant</h3>
+
+          <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-3">
+            <li>• Browse boarding houses</li>
+            <li>• Search boarding houses</li>
+            <li>• View room information</li>
+            <li>• Submit booking requests</li>
+            <li>• Track booking status</li>
+            <li>• Cancel bookings</li>
+          </ul>
+        </div>
+
+        <!-- OWNER -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <div
+            class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-6"
+          >
+            O
+          </div>
+
+          <h3 class="text-xl font-bold mb-4">Owner</h3>
+
+          <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-3">
+            <li>• Create boarding houses</li>
+            <li>• Update boarding house information</li>
+            <li>• Delete owned boarding houses</li>
+            <li>• Manage rooms</li>
+            <li>• View booking requests</li>
+            <li>• Approve or reject bookings</li>
+          </ul>
+        </div>
+
+        <!-- ADMIN -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <div
+            class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6"
+          >
+            A
+          </div>
+
+          <h3 class="text-xl font-bold mb-4">Admin</h3>
+
+          <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-3">
+            <li>• Defined administrative role</li>
+            <li>• Role-based access control</li>
+            <li>• Administrative permissions</li>
+          </ul>
+
+          <p class="text-gray-500 text-xs mt-6">
+            Administrative workflows can be expanded based on application
+            requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       KEY FEATURES
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Features
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">Key Features</h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl">
+          Core functionality implemented in Kostify.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- AUTH -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">01</div>
+
+          <h3 class="font-bold text-lg mb-3">Authentication</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Register, login, and logout functionality using JWT authentication
+            stored in httpOnly cookies.
+          </p>
+        </div>
+
+        <!-- RBAC -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">02</div>
+
+          <h3 class="font-bold text-lg mb-3">Role-Based Access Control</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Different permissions for USER, OWNER, and ADMIN roles using guards.
+          </p>
+        </div>
+
+        <!-- SEARCH -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">03</div>
+
+          <h3 class="font-bold text-lg mb-3">Search & Browse</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Browse and search boarding houses by name, city, and address.
+          </p>
+        </div>
+
+        <!-- KOS CRUD -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">04</div>
+
+          <h3 class="font-bold text-lg mb-3">Boarding House Management</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            CRUD operations for boarding houses owned by property owners.
+          </p>
+        </div>
+
+        <!-- ROOM CRUD -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">05</div>
+
+          <h3 class="font-bold text-lg mb-3">Room Management</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Create, update, and delete rooms associated with boarding houses.
+          </p>
+        </div>
+
+        <!-- BOOKING -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-7"
+        >
+          <div class="text-blue-400 text-2xl mb-5">06</div>
+
+          <h3 class="font-bold text-lg mb-3">Booking Management</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Create bookings, manage booking statuses, approve or reject
+            requests, and cancel bookings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       TECH STACK
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Technologies
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">Tech Stack</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- FRONTEND -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-6 text-blue-400">Frontend</h3>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="rounded-lg bg-blue-500/10 text-blue-300 px-4 py-3">
+              Next.js
+            </span>
+
+            <span class="rounded-lg bg-blue-500/10 text-blue-300 px-4 py-3">
+              TypeScript
+            </span>
+
+            <span class="rounded-lg bg-blue-500/10 text-blue-300 px-4 py-3">
+              Tailwind CSS
+            </span>
+
+            <span class="rounded-lg bg-blue-500/10 text-blue-300 px-4 py-3">
+              Axios
+            </span>
+          </div>
+        </div>
+
+        <!-- BACKEND -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-6 text-cyan-400">Backend</h3>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="rounded-lg bg-cyan-500/10 text-cyan-300 px-4 py-3">
+              NestJS
+            </span>
+
+            <span class="rounded-lg bg-cyan-500/10 text-cyan-300 px-4 py-3">
+              Prisma ORM
+            </span>
+
+            <span class="rounded-lg bg-cyan-500/10 text-cyan-300 px-4 py-3">
+              PostgreSQL
+            </span>
+
+            <span class="rounded-lg bg-cyan-500/10 text-cyan-300 px-4 py-3">
+              JWT
+            </span>
+          </div>
+        </div>
+
+        <!-- DEPLOYMENT -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-6 text-purple-400">Deployment</h3>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="rounded-lg bg-purple-500/10 text-purple-300 px-4 py-3">
+              Vercel
+            </span>
+
+            <span class="rounded-lg bg-purple-500/10 text-purple-300 px-4 py-3">
+              Railway
+            </span>
+
+            <span class="rounded-lg bg-purple-500/10 text-purple-300 px-4 py-3">
+              Neon
+            </span>
+          </div>
+        </div>
+
+        <!-- TOOLS -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-6 text-orange-400">
+            Development Tools
+          </h3>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="rounded-lg bg-orange-500/10 text-orange-300 px-4 py-3">
+              Git
+            </span>
+
+            <span class="rounded-lg bg-orange-500/10 text-orange-300 px-4 py-3">
+              GitHub
+            </span>
+
+            <span class="rounded-lg bg-orange-500/10 text-orange-300 px-4 py-3">
+              Postman
+            </span>
+
+            <span class="rounded-lg bg-orange-500/10 text-orange-300 px-4 py-3">
+              VS Code
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       SYSTEM ARCHITECTURE
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Architecture
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">System Architecture</h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-3xl">
+          Kostify uses a client-server architecture connecting the frontend,
+          backend API, and PostgreSQL database.
+        </p>
+      </div>
+
+      <!-- ARCHITECTURE DIAGRAM -->
+      <div
+        class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+      >
+        <div class="grid md:grid-cols-3 gap-5 items-center">
+          <div
+            class="rounded-xl border border-blue-500/30 bg-blue-500/10 p-6 text-center"
+          >
+            <p class="text-blue-400 font-semibold mb-3">FRONTEND</p>
+
+            <h3 class="font-bold text-xl">Next.js</h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mt-3">
+              User Interface
+            </p>
+          </div>
+
+          <div class="text-center text-gray-500 text-2xl">
+            →
+            <p class="text-xs mt-2">HTTP / REST API</p>
+          </div>
+
+          <div
+            class="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-6 text-center"
+          >
+            <p class="text-cyan-400 font-semibold mb-3">BACKEND</p>
+
+            <h3 class="font-bold text-xl">NestJS</h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mt-3">
+              Business Logic & API
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-center my-6 text-gray-500 text-2xl">↓</div>
+
+        <div
+          class="max-w-md mx-auto rounded-xl border border-purple-500/30 bg-purple-500/10 p-6 text-center"
+        >
+          <p class="text-purple-400 font-semibold mb-3">DATABASE</p>
+
+          <h3 class="font-bold text-xl">PostgreSQL</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-3">
+            Managed using Prisma ORM
+          </p>
+        </div>
+      </div>
+
+      <p class="text-gray-500 text-sm mt-5">
+        Frontend and backend are deployed separately.
+      </p>
+    </section>
+
+    <!-- =========================
+       DATABASE DESIGN
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Database
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">Database Design</h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-3xl">
+          The database uses relational data modeling to connect users, boarding
+          houses, rooms, and booking records.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">User</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Stores user information and role data. A user can own multiple
+            boarding houses and create booking records.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">Kos</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Stores boarding house information. Each boarding house belongs to an
+            owner and can contain multiple rooms.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">Room</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Stores room information and belongs to a boarding house.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">Booking</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Stores booking requests, associated users, rooms, and booking status
+            information.
+          </p>
+        </div>
+      </div>
+
+      <!-- ERD IMAGE -->
+      <div
+        class="mt-10 rounded-2xl border border-white/10 bg-[#0B1728] p-5 md:p-8"
+      >
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-5">
+          Entity Relationship Diagram
+        </p>
+
+        <img
+          src="../assets/images/kostify/erd.png"
+          alt="Kostify Entity Relationship Diagram"
+          class="w-full h-auto rounded-xl"
+        />
+      </div>
+    </section>
+
+    <!-- =========================
+       DEVELOPMENT CHALLENGES
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Development
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">
+          Challenges & Solutions
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-3xl">
+          Technical challenges encountered during the development and deployment
+          process.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- CHALLENGE 1 -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">
+            01. Authentication & Protected Routes
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Implementing authentication required coordinating JWT cookies
+            between the frontend and backend, while protecting pages and API
+            endpoints based on user roles.
+          </p>
+
+          <div class="border-l-2 border-blue-500 pl-5 mt-6">
+            <p class="text-blue-400 font-semibold mb-2">Solution</p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Implemented JWT authentication using httpOnly cookies, JwtGuard,
+              RoleGuard, and frontend route protection.
+            </p>
+          </div>
+        </div>
+
+        <!-- CHALLENGE 2 -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">02. Booking Management</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Booking functionality required managing relationships between users
+            and rooms, preventing duplicate booking requests, and maintaining
+            booking statuses.
+          </p>
+
+          <div class="border-l-2 border-blue-500 pl-5 mt-6">
+            <p class="text-blue-400 font-semibold mb-2">Solution</p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Implemented booking validation, Prisma relations, booking status
+              enums, and owner approval or rejection workflows.
+            </p>
+          </div>
+        </div>
+
+        <!-- CHALLENGE 3 -->
+        <div
+          class="rounded-2xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-8"
+        >
+          <h3 class="text-xl font-bold mb-4">03. Deployment & Integration</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Deploying the frontend and backend separately required configuring
+            environment variables, API communication, and cross-origin requests.
+          </p>
+
+          <div class="border-l-2 border-blue-500 pl-5 mt-6">
+            <p class="text-blue-400 font-semibold mb-2">Solution</p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Configured frontend API environment variables, backend CORS
+              settings, and separate deployments using Vercel and Railway.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       PROJECT GALLERY
+  ========================== -->
+    <section id="gallery" class="max-w-7xl mx-auto px-6 py-20">
+      <div class="mb-12">
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Showcase
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">Project Gallery</h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl">
+          Screenshots of the application interface and its key functionality.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- HOME -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Home.png"
+              alt="Kostify Home Page"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Home Page</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            Browse and discover boarding houses.
+          </p>
+        </div>
+
+        <!-- DETAIL -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Kos Detail.png"
+              alt="Kostify Boarding House Detail"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Boarding House Detail</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            View boarding house and room information.
+          </p>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Login.png"
+              alt="Kostify Login"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Authentication</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            Login and authentication interface.
+          </p>
+        </div>
+
+        <!-- BOOKING -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Register.png"
+              alt="Kostify My Bookings"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Register</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            Create a new account to access booking and property management
+            features.
+          </p>
+        </div>
+
+        <!-- OWNER -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Owner Dashboard.png"
+              alt="Kostify Owner Dashboard"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Owner Dashboard</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            Manage properties, rooms, and bookings.
+          </p>
+        </div>
+
+        <!-- OWNER BOOKINGS -->
+        <div class="group">
+          <div
+            class="overflow-hidden rounded-2xl border border-white/10 bg-[#0B1728]"
+          >
+            <img
+              src="../images/Booking.png"
+              alt="Kostify Owner Bookings"
+              class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="font-semibold text-lg mt-5">Booking</h3>
+
+          <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            Select your preferred check-in and check-out dates to book .
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       WHAT I LEARNED
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div
+        class="rounded-3xl border border-blue-500/20 bg-gradient-to-br from-blue-500/[0.08] to-transparent p-8 md:p-12"
+      >
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Reflection
+        </p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mt-4">What I Learned</h2>
+
+        <div class="grid md:grid-cols-2 gap-10 mt-10">
+          <div>
+            <h3 class="font-semibold text-lg mb-4">Technical Learning</h3>
+
+            <ul
+              class="text-gray-600 dark:text-gray-400 space-y-4 leading-relaxed"
+            >
+              <li>
+                • Building a full-stack application with frontend and backend
+                integration.
+              </li>
+
+              <li>
+                • Implementing authentication and role-based authorization.
+              </li>
+
+              <li>
+                • Designing relational database models and Prisma relationships.
+              </li>
+
+              <li>
+                • Managing API requests, validation, and application deployment.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-4">Development Experience</h3>
+
+            <ul
+              class="text-gray-600 dark:text-gray-400 space-y-4 leading-relaxed"
+            >
+              <li>
+                • Understanding the importance of separating frontend and
+                backend responsibilities.
+              </li>
+
+              <li>
+                • Learning to troubleshoot integration and deployment issues.
+              </li>
+
+              <li>
+                • Improving problem-solving skills through implementation and
+                debugging.
+              </li>
+
+              <li>
+                • Developing a more structured approach to building web
+                applications.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       FINAL CTA
+  ========================== -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div
+        class="text-center rounded-3xl bg-white/70 dark:bg-[#0B1728] border border-gray-200 dark:border-white/10 p-10 md:p-16"
+      >
+        <p
+          class="text-blue-400 font-semibold uppercase tracking-widest text-sm"
+        >
+          Explore Kostify
+        </p>
+
+        <h2 class="text-3xl md:text-5xl font-bold mt-5">
+          Interested in the project?
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-6 max-w-2xl mx-auto">
+          Explore the application or review the source code to learn more about
+          its implementation.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-10">
+          <a
+            href="https://crack-fe-fakhridhogunawan73.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-blue-500 px-6 py-4 rounded-xl font-semibold hover:bg-blue-600 transition"
+          >
+            Live Demo ↗
+          </a>
+
+          <a
+            href="GITHUB_FRONTEND_URL"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-4 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+          >
+            Frontend GitHub ↗
+          </a>
+
+          <a
+            href="GITHUB_BACKEND_URL"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-4 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+          >
+            Backend GitHub ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+       FOOTER
+  ========================== -->
+    <footer class="border-t border-gray-200 dark:border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between gap-4"
+      >
+        <p class="text-gray-500 text-sm">© 2026 Fakhridho Gunawan</p>
+
+        <a
+          href="../index.html#projects"
+          class="text-blue-400 hover:text-blue-300 transition"
+        >
+          <span>
+            <i
+              class="fa-solid fa-arrow-left text-xs transition-transform duration-300 group-hover:-translate-x-0.5"
+            ></i>
+          </span>
+          <span>Back to Portfolio</span>
+        </a>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

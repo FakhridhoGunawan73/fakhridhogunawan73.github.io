@@ -1,344 +1,1651 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link id="favicon" rel="icon" href="image/linkedinHeadshot.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fakhridho Portfolio</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+
+    <!-- Tailwind & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Vanilla Tilt for 3D Interactions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Outfit", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                light: "#60A5FA",
+                DEFAULT: "#3B82F6",
+                dark: "#1D4ED8",
+              },
+
+              accent: {
+                light: "#67E8F9",
+                DEFAULT: "#06B6D4",
+                dark: "#0891B2",
+              },
+            },
+            animation: {
+              blob: "blob 7s infinite",
+              "spin-slow": "spin 15s linear infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
 
     <style>
-        @font-face {
-            font-family: 'roboto';
-            src: url(assets/font/Roboto/static/Roboto_Condensed-Regular.ttf) format("woff2");
+      body {
+        overflow-x: hidden;
+      }
+
+      /* Animated Mesh Background - Adapts to Light/Dark */
+      .mesh-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+      }
+      .mesh-blob {
+        position: absolute;
+        filter: blur(90px);
+        opacity: 0.6;
+        border-radius: 50%;
+        animation: blob 10s infinite alternate;
+      }
+      .dark .mesh-blob {
+        opacity: 0.4;
+      } /* Slightly dimmer in dark mode */
+
+      .blob-1 {
+        top: -10%;
+        left: -10%;
+        width: 50vw;
+        height: 50vw;
+        background: rgba(59, 130, 246, 0.3);
+        animation-delay: 0s;
+      }
+      .blob-2 {
+        top: 40%;
+        right: -20%;
+        width: 40vw;
+        height: 40vw;
+        background: rgba(6, 182, 212, 0.2);
+        animation-delay: 2s;
+      }
+      .blob-3 {
+        bottom: -20%;
+        left: 20%;
+        width: 60vw;
+        height: 60vw;
+        background: rgba(96, 165, 250, 0.2);
+        animation-delay: 4s;
+      }
+
+      /* Glassmorphism Utilities */
+      .glass-card {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      /* Interactive Text Gradient */
+      .text-gradient {
+        background: linear-gradient(to right, #3b82f6, #06b6d4, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% auto;
+        animation: gradient-shift 5s ease infinite;
+      }
+
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
         }
-    </style>
-
-    <style type="text/tailwindcss">
-        @theme {
-            --font-roboto: "Roboto", sans-serif; 
-            --color-primary: oklch(63.7% 0.237 25.331);
-            --color-secondary: oklch(37.2% 0.044 257.287);
-            --color-third: oklch(20.8% 0.042 265.755);
-            --color-dark: oklch(12.9% 0.042 264.695);
+        50% {
+          background-position: 100% 50%;
         }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Typing Effect with Blinking Cursor */
+      .typing-container {
+        display: inline-block;
+        position: relative;
+      }
+      .typing-container::after {
+        content: "|";
+        position: absolute;
+        right: -8px;
+        animation: blink 1s step-end infinite;
+        color: #3b82f6;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Scroll Progress Bar */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(to right, #3b82f6, #06b6d4);
+        z-index: 1000;
+        width: 0%;
+        transition: width 0.1s ease;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #333;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3b82f6;
+      }
+
+      /* Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Profile Image Glow */
+      .profile-glow::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #3b82f6, #06b6d4);
+        z-index: -1;
+        filter: blur(15px);
+        animation: spin-slow 10s linear infinite;
+      }
     </style>
-</head>
+  </head>
+  <body
+    class="antialiased selection:bg-brand text-gray-900 bg-[#F5F9FF] dark:bg-[#07111F] dark:text-gray-200 transition-colors duration-300"
+  >
+    <div class="scroll-progress" id="progressBar"></div>
 
-<body class="font-roboto">
-    <!-- Header Start -->
-    <header class="sticky top-0 z-50 shadow-md">
-        <nav class="bg-white/80 backdrop-blur-md border-b border-gray-200">
-            <div class="container mx-auto px-4">
-
-    <div class="flex flex-wrap items-center justify-between">
-
-        <a href="#home" class="flex text-primary text-3xl p-3 items-center">
-            Fakhridho Gunawan
-        </a>
-
-        <button id="menu-button" class="sm:hidden">
-            ☰
-        </button>
-
-        <div class="w-full basis-full sm:w-auto sm:basis-auto">
-
-            <ul
-                id="menu"
-                class="hidden text-center sm:flex sm:items-center sm:gap-5">
-
-                <li>
-                    <a href="#home"
-                        class="block p-3 hover:text-primary transition duration-300">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#about"
-                        class="block p-3 hover:text-primary transition duration-300">
-                        About
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#projects"
-                        class="block p-3 hover:text-primary transition duration-300">
-                        Projects
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#contact"
-                        class="block p-3 hover:text-primary transition duration-300">
-                        Contact
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-
+    <!-- Animated Mesh Background -->
+    <div class="mesh-bg bg-[#F5F9FF] dark:bg-[#07111F]">
+      <div class="mesh-blob blob-1"></div>
+      <div class="mesh-blob blob-2"></div>
+      <div class="mesh-blob blob-3"></div>
     </div>
 
-</div>
-        </nav>
-    </header>
-    <!-- Header End -->
-    <!-- Hero Section Start -->
-    <section id="home" class="min-h-screen flex items-center">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full self-center px-4 md:w-full lg:w-1/2">
-                    <h1 class="text-base font-semibold text-primary md:text-xl lg:text-2xl">Hi 👋, Saya <span
-                            class="block font-bold text-dark text-3xl mt-1 lg:text-4xl">Fakhridho Gunawan</span></h1>
-                    <h2 class="font-medium text-third text-lg mb-5 md:text-xl lg:text-2xl">Frontend Developer</h2>
-                    <p class="font-medium text-secondary mb-10 leading-relaxed  ">Software itu seperti seni. Keduanya
-                        membutuhkan <span class="text-dark font-bold">keahlian, dedikasi, dan kreativitas.</span></p>
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full glass-card bg-white/70 dark:bg-[#07111F]/75 border-b border-gray-200 dark:border-white/10 z-50 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="#home"
+            class="font-display text-2xl font-bold tracking-wider text-gray-900 dark:text-white"
+          >
+            Fakhridho<span class="text-brand-light">.</span>
+          </a>
 
-                    <a href="#contact"
-                        class="text-base font-semibold text-white bg-gradient-to-r from-red-900 via-red-600 to-red-900 py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 hover:text-slate-900 transition duration-300 ease-in-out">Hubungi
-                        Saya</a>
-                </div>
-                <div class="w-full self-end px-4 lg:w-1/2 mt-8">
-                    <picture>
-                        <source media="(min-width:768px)" srcset="assets/images/Profile1.JPG">
-                        <img src="assets/images/Profile1-srcset.JPG" alt="profile-fakhridho" class="w-64 md:w-80 lg:w-96 mx-auto rounded-2xl shadow-lg">
-                    </picture>
-                </div>
-            </div>
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              href="#home"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Home<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#about"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              About<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#skills"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Skills<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#projects"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Projects<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#experience"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Experience<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#education"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Education<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#contact"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-light dark:hover:text-brand-light transition-colors relative group"
+            >
+              Contact<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-light transition-all group-hover:w-full"
+              ></span>
+            </a>
+
+            <!-- Theme Toggle Button -->
+            <button
+              id="theme-toggle"
+              class="p-2 ml-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors focus:outline-none"
+            >
+              <i class="fas fa-moon text-lg" id="theme-icon"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center md:hidden">
+            <button
+              id="theme-toggle-mobile"
+              class="p-2 mr-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors focus:outline-none"
+            >
+              <i class="fas fa-moon text-lg" id="theme-icon-mobile"></i>
+            </button>
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-900 dark:text-white focus:outline-none p-2"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
         </div>
-    </section>
-    <!-- Hero Section End -->
 
-    <!-- About Start -->
-    <section id="about" class="pt-20 pb-20">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap">
-                <div class="w-full px-4 mb-10 lg:w-1/2">
-                    <h4 class="font-bold uppercas text-primary text-lg mb-3">Tentang Saya</h4>
-                    <h2 class="font-bold text-dark text-3xl mb-5 max-w-md lg:text-4xl">Perjalanan Saya di Dunia Software
-                        Engineering</h2>
-                    <p class="font-medium text-base text-secondary py-4 max-w-xl lg:text-lg">Saya adalah lulusan S1
-                        Teknik
-                        Informatika – Universitas Islam Riau (2019–2024) dan saat ini saya merupakan student di RevoU
-                        Full Stack Software Engineering Bootcamp (2025–sekarang).
-                        Saya berfokus pada Web Development, khususnya dalam membangun aplikasi yang efektif, modern, dan
-                        mudah digunakan.
-                    </p>
-                    <p class="font-medium text-base text-secondary max-w-xl lg:text-lg">
-                        Motivasi terbesar saya adalah menjadi seorang engineer yang mampu bekerja dalam proyek besar,
-                        memberikan solusi nyata, dan terus berkembang mengikuti perkembangan teknologi.
-                    </p>
-                </div>
-                <div class="w-full px-4 lg:w-1/2">
-                    <h3 class="font-semibold text-dark text-2xl mb-4 lg:text-3xl lg:pt-10">Mari Berteman</h3>
-                    <p class="font-medium text-base text-secondary mb-6 lg:text-lg">Di luar dunia programming, saya
-                        menyukai berolahraga dan mendengarkan musik untuk menjaga keseimbangan hidup.
-                        Saya merupakan pribadi yang easygoing, terbuka, dan senang berdiskusi dengan orang baru.</p>
-                    <p class="font-medium text-base text-secondary mb-6 lg:text-lg">
-                        Jangan ragu untuk menghubungi saya jika ingin berdiskusi, berkolaborasi, atau sekadar
-                        berkenalan.
-                        Mari berteman dan berkembang bersama!
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <a href="https://github.com/FakhridhoGunawan73" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-dark fill-current hover:text-white" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2.24902C6.51613 2.24902 2 6.70064 2 12.249C2 16.6361 4.87097 20.3781 8.87097 21.7329C9.3871 21.8297 9.54839 21.5071 9.54839 21.2813C9.54839 21.0555 9.54839 20.4103 9.51613 19.5393C6.74194 20.1845 6.16129 18.1845 6.16129 18.1845C5.70968 17.0555 5.03226 16.7329 5.03226 16.7329C4.12903 16.0877 5.06452 16.0877 5.06452 16.0877C6.06452 16.12 6.6129 17.12 6.6129 17.12C7.48387 18.6684 8.96774 18.2168 9.51613 17.9264C9.6129 17.2813 9.87097 16.8297 10.1613 16.5716C7.96774 16.3458 5.6129 15.4748 5.6129 11.6684C5.6129 10.5716 6.03226 9.70064 6.64516 9.02322C6.54839 8.79741 6.19355 7.76515 6.74194 6.37806C6.74194 6.37806 7.6129 6.11999 9.51613 7.41031C10.3226 7.18451 11.1613 7.05548 12.0323 7.05548C12.9032 7.05548 13.7742 7.15225 14.5484 7.41031C16.4516 6.15225 17.2903 6.37806 17.2903 6.37806C17.8387 7.73289 17.5161 8.79741 17.3871 9.02322C18.0323 9.70064 18.4194 10.6039 18.4194 11.6684C18.4194 15.4748 16.0645 16.3458 13.871 16.5716C14.2258 16.8942 14.5484 17.5393 14.5484 18.4426C14.5484 19.7974 14.5161 20.8619 14.5161 21.1845C14.5161 21.4426 14.7097 21.7329 15.1935 21.6361C19.129 20.3135 22 16.6039 22 12.1845C21.9677 6.70064 17.4839 2.24902 12 2.24902Z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/fakhridhognwn" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-dark fill-current hover:text-white" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.6672 12C8.6672 10.1591 10.1591 8.6664 12 8.6664C13.8409 8.6664 15.3336 10.1591 15.3336 12C15.3336 13.8409 13.8409 15.3336 12 15.3336C10.1591 15.3336 8.6672 13.8409 8.6672 12ZM6.86512 12C6.86512 14.836 9.164 17.1349 12 17.1349C14.836 17.1349 17.1349 14.836 17.1349 12C17.1349 9.164 14.836 6.86512 12 6.86512C9.164 6.86512 6.86512 9.164 6.86512 12ZM16.1382 6.66152C16.1381 6.89886 16.2084 7.13089 16.3401 7.32829C16.4719 7.52568 16.6593 7.67956 16.8785 7.77047C17.0977 7.86138 17.339 7.88525 17.5718 7.83904C17.8046 7.79283 18.0185 7.67862 18.1863 7.51087C18.3542 7.34311 18.4686 7.12934 18.515 6.89658C18.5614 6.66382 18.5377 6.42253 18.447 6.20322C18.3563 5.98392 18.2025 5.79644 18.0052 5.6645C17.808 5.53257 17.576 5.4621 17.3386 5.462H17.3382C17.02 5.46215 16.715 5.58856 16.49 5.81347C16.265 6.03837 16.1384 6.34339 16.1382 6.66152ZM7.96 20.1398C6.98504 20.0954 6.45512 19.933 6.10296 19.7958C5.63608 19.614 5.30296 19.3975 4.95272 19.0478C4.60248 18.698 4.38568 18.3652 4.20472 17.8983C4.06744 17.5463 3.90504 17.0162 3.86072 16.0413C3.81224 14.9872 3.80256 14.6706 3.80256 12.0001C3.80256 9.3296 3.81304 9.01384 3.86072 7.95888C3.90512 6.98392 4.06872 6.45488 4.20472 6.10184C4.38648 5.63496 4.60296 5.30184 4.95272 4.9516C5.30248 4.60136 5.63528 4.38456 6.10296 4.2036C6.45496 4.06632 6.98504 3.90392 7.96 3.8596C9.01408 3.81112 9.33072 3.80144 12 3.80144C14.6693 3.80144 14.9862 3.81192 16.0412 3.8596C17.0162 3.904 17.5452 4.0676 17.8982 4.2036C18.3651 4.38456 18.6982 4.60184 19.0485 4.9516C19.3987 5.30136 19.6147 5.63496 19.7965 6.10184C19.9338 6.45384 20.0962 6.98392 20.1405 7.95888C20.189 9.01384 20.1986 9.3296 20.1986 12.0001C20.1986 14.6706 20.189 14.9863 20.1405 16.0413C20.0961 17.0162 19.9329 17.5462 19.7965 17.8983C19.6147 18.3652 19.3982 18.6983 19.0485 19.0478C18.6987 19.3972 18.3651 19.614 17.8982 19.7958C17.5462 19.933 17.0162 20.0954 16.0412 20.1398C14.9871 20.1882 14.6705 20.1979 12 20.1979C9.32952 20.1979 9.01376 20.1882 7.96 20.1398ZM7.8772 2.06056C6.81264 2.10904 6.0852 2.27784 5.44992 2.52504C4.792 2.78032 4.23504 3.1228 3.67848 3.67848C3.12192 4.23416 2.78032 4.792 2.52504 5.44992C2.27784 6.0856 2.10904 6.81264 2.06056 7.8772C2.01128 8.94344 2 9.28432 2 12C2 14.7157 2.01128 15.0566 2.06056 16.1228C2.10904 17.1874 2.27784 17.9144 2.52504 18.5501C2.78032 19.2076 3.122 19.7661 3.67848 20.3215C4.23496 20.877 4.792 21.219 5.44992 21.475C6.0864 21.7222 6.81264 21.891 7.8772 21.9394C8.944 21.9879 9.28432 22 12 22C14.7157 22 15.0566 21.9887 16.1228 21.9394C17.1874 21.891 17.9144 21.7222 18.5501 21.475C19.2076 21.219 19.765 20.8772 20.3215 20.3215C20.8781 19.7658 21.219 19.2076 21.475 18.5501C21.7222 17.9144 21.8918 17.1874 21.9394 16.1228C21.9879 15.0558 21.9992 14.7157 21.9992 12C21.9992 9.28432 21.9879 8.94344 21.9394 7.8772C21.891 6.81256 21.7222 6.0852 21.475 5.44992C21.219 4.7924 20.8772 4.23504 20.3215 3.67848C19.7658 3.12192 19.2076 2.78032 18.5509 2.52504C17.9144 2.27784 17.1874 2.10824 16.1236 2.06056C15.0574 2.01208 14.7165 2 12.0008 2C9.28512 2 8.944 2.01128 7.8772 2.06056Z" />
-                                <path
-                                    d="M8.6672 12C8.6672 10.1591 10.1591 8.6664 12 8.6664C13.8409 8.6664 15.3336 10.1591 15.3336 12C15.3336 13.8409 13.8409 15.3336 12 15.3336C10.1591 15.3336 8.6672 13.8409 8.6672 12ZM6.86512 12C6.86512 14.836 9.164 17.1349 12 17.1349C14.836 17.1349 17.1349 14.836 17.1349 12C17.1349 9.164 14.836 6.86512 12 6.86512C9.164 6.86512 6.86512 9.164 6.86512 12ZM16.1382 6.66152C16.1381 6.89886 16.2084 7.13089 16.3401 7.32829C16.4719 7.52568 16.6593 7.67956 16.8785 7.77047C17.0977 7.86138 17.339 7.88525 17.5718 7.83904C17.8046 7.79283 18.0185 7.67862 18.1863 7.51087C18.3542 7.34311 18.4686 7.12934 18.515 6.89658C18.5614 6.66382 18.5377 6.42253 18.447 6.20322C18.3563 5.98392 18.2025 5.79644 18.0052 5.6645C17.808 5.53257 17.576 5.4621 17.3386 5.462H17.3382C17.02 5.46215 16.715 5.58856 16.49 5.81347C16.265 6.03837 16.1384 6.34339 16.1382 6.66152ZM7.96 20.1398C6.98504 20.0954 6.45512 19.933 6.10296 19.7958C5.63608 19.614 5.30296 19.3975 4.95272 19.0478C4.60248 18.698 4.38568 18.3652 4.20472 17.8983C4.06744 17.5463 3.90504 17.0162 3.86072 16.0413C3.81224 14.9872 3.80256 14.6706 3.80256 12.0001C3.80256 9.3296 3.81304 9.01384 3.86072 7.95888C3.90512 6.98392 4.06872 6.45488 4.20472 6.10184C4.38648 5.63496 4.60296 5.30184 4.95272 4.9516C5.30248 4.60136 5.63528 4.38456 6.10296 4.2036C6.45496 4.06632 6.98504 3.90392 7.96 3.8596C9.01408 3.81112 9.33072 3.80144 12 3.80144C14.6693 3.80144 14.9862 3.81192 16.0412 3.8596C17.0162 3.904 17.5452 4.0676 17.8982 4.2036C18.3651 4.38456 18.6982 4.60184 19.0485 4.9516C19.3987 5.30136 19.6147 5.63496 19.7965 6.10184C19.9338 6.45384 20.0962 6.98392 20.1405 7.95888C20.189 9.01384 20.1986 9.3296 20.1986 12.0001C20.1986 14.6706 20.189 14.9863 20.1405 16.0413C20.0961 17.0162 19.9329 17.5462 19.7965 17.8983C19.6147 18.3652 19.3982 18.6983 19.0485 19.0478C18.6987 19.3972 18.3651 19.614 17.8982 19.7958C17.5462 19.933 17.0162 20.0954 16.0412 20.1398C14.9871 20.1882 14.6705 20.1979 12 20.1979C9.32952 20.1979 9.01376 20.1882 7.96 20.1398ZM7.8772 2.06056C6.81264 2.10904 6.0852 2.27784 5.44992 2.52504C4.792 2.78032 4.23504 3.1228 3.67848 3.67848C3.12192 4.23416 2.78032 4.792 2.52504 5.44992C2.27784 6.0856 2.10904 6.81264 2.06056 7.8772C2.01128 8.94344 2 9.28432 2 12C2 14.7157 2.01128 15.0566 2.06056 16.1228C2.10904 17.1874 2.27784 17.9144 2.52504 18.5501C2.78032 19.2076 3.122 19.7661 3.67848 20.3215C4.23496 20.877 4.792 21.219 5.44992 21.475C6.0864 21.7222 6.81264 21.891 7.8772 21.9394C8.944 21.9879 9.28432 22 12 22C14.7157 22 15.0566 21.9887 16.1228 21.9394C17.1874 21.891 17.9144 21.7222 18.5501 21.475C19.2076 21.219 19.765 20.8772 20.3215 20.3215C20.8781 19.7658 21.219 19.2076 21.475 18.5501C21.7222 17.9144 21.8918 17.1874 21.9394 16.1228C21.9879 15.0558 21.9992 14.7157 21.9992 12C21.9992 9.28432 21.9879 8.94344 21.9394 7.8772C21.891 6.81256 21.7222 6.0852 21.475 5.44992C21.219 4.7924 20.8772 4.23504 20.3215 3.67848C19.7658 3.12192 19.2076 2.78032 18.5509 2.52504C17.9144 2.27784 17.1874 2.10824 16.1236 2.06056C15.0574 2.01208 14.7165 2 12.0008 2C9.28512 2 8.944 2.01128 7.8772 2.06056Z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/fakhridho-gunawan" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-dark fill-current hover:text-white" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19.7065 3H4.34844C3.62264 3 3.04199 3.58065 3.04199 4.30645V19.6935C3.04199 20.3903 3.62264 21 4.34844 21H19.6485C20.3743 21 20.9549 20.4194 20.9549 19.6935V4.27742C21.013 3.58065 20.4323 3 19.7065 3ZM8.35491 18.3H5.71297V9.73548H8.35491V18.3ZM7.01942 8.54516C6.14846 8.54516 5.4807 7.84839 5.4807 7.00645C5.4807 6.16452 6.17749 5.46774 7.01942 5.46774C7.86136 5.46774 8.55813 6.16452 8.55813 7.00645C8.55813 7.84839 7.91942 8.54516 7.01942 8.54516ZM18.371 18.3H15.7291V14.1484C15.7291 13.1613 15.7001 11.8548 14.3356 11.8548C12.942 11.8548 12.7388 12.9581 12.7388 14.0613V18.3H10.0968V9.73548H12.6807V10.9258H12.7097C13.0872 10.229 13.9291 9.53226 15.2356 9.53226C17.9356 9.53226 18.4291 11.2742 18.4291 13.6548V18.3H18.371Z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 dark:border-white/10 pt-4"
+        >
+          <a
+            href="#home"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Projects</a
+          >
+          <a
+            href="#experience"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="block text-gray-700 dark:text-gray-300 hover:text-brand-light transition-colors"
+            >Contact</a
+          >
         </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center pt-20 relative"
+    >
+      <div class="container mx-auto px-6">
+        <div
+          class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12"
+        >
+          <!-- Text Content -->
+          <div class="lg:w-1/2 text-center lg:text-left z-10 reveal active">
+            <div
+              class="inline-block px-4 py-1.5 rounded-full border border-gray-300 dark:border-white/10 bg-white/50 dark:bg-black/30 backdrop-blur-md text-xs font-semibold tracking-widest uppercase mb-6 text-gray-700 dark:text-gray-300 shadow-sm"
+            >
+              <i class="fa-solid fa-bolt text-yellow-500 mr-2"></i> Available
+              for opportunities
+            </div>
+
+            <h1
+              class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-gray-900 dark:text-white"
+            >
+              Hi, I'm <br />
+              <span class="text-gradient">Fakhridho Gunawan</span>
+            </h1>
+
+            <h2
+              class="font-bold text-primary text-lg mb-3 mt-3 md:text-xl lg:text-2xl min-h-[1.5em]"
+            >
+              <span id="typing-text"></span>
+              <span class="animate-[blink_1s_step-end_infinite]">|</span>
+            </h2>
+
+            <p
+              class="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              I believe a great website is not just about its appearance, but
+              also about providing a comfortable, responsive, and intuitive user
+              experience.
+            </p>
+
+            <div
+              class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+            >
+              <a
+                href="#contact"
+                class="w-full sm:w-auto px-8 py-3.5 bg-gray-900 text-white dark:bg-white dark:text-black font-semibold rounded-lg hover:bg-brand-light dark:hover:bg-gray-200 transition-all transform hover:scale-105 shadow-md"
+              >
+                Get In Touch
+              </a>
+              <a
+                href="#projects"
+                class="w-full sm:w-auto px-8 py-3.5 glass-card bg-white/60 dark:bg-white/5 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-white/90 dark:hover:bg-white/10 transition-all border border-gray-300 dark:border-white/20 shadow-sm"
+              >
+                View My Work
+              </a>
+            </div>
+
+            <div
+              class="flex items-center gap-6 mt-12 justify-center lg:justify-start"
+            >
+              <a
+                href="https://github.com/FakhridhoGunawan73"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transform hover:-translate-y-1 transition-all text-2xl"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/fakhridho-gunawan-23045b391/"
+                target="_blank"
+                class="text-gray-500 hover:text-[#0a66c2] dark:text-gray-400 dark:hover:text-[#0a66c2] transform hover:-translate-y-1 transition-all text-2xl"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/fakhridhognwn"
+                target="_blank"
+                class="text-gray-500 hover:text-[#e1306c] dark:text-gray-400 dark:hover:text-[#e1306c] transform hover:-translate-y-1 transition-all text-2xl"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Profile Image -->
+          <div
+            class="lg:w-1/2 flex justify-center z-10 reveal active mt-10 lg:mt-0"
+          >
+            <div class="relative profile-glow">
+              <div
+                class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-white/50 dark:border-white/20 bg-white/50 dark:bg-black/50 backdrop-blur-sm relative z-10 p-2 shadow-xl"
+              >
+                <img
+                  src="images/Profile.jpg"
+                  alt="Fakhridho Gunawan - Frontend Developer & Software Developer"
+                  class="w-full h-full object-cover rounded-full filter contrast-110"
+                />
+              </div>
+
+              <!-- Floating Badges -->
+              <div
+                class="absolute -bottom-6 right-0 glass-card bg-white/80 dark:bg-black/60 border border-gray-200 dark:border-white/10 px-4 py-3 rounded-xl z-20 flex items-center gap-3 animate-bounce shadow-lg"
+                style="animation-duration: 3s"
+              >
+                <i class="fa-solid fa-code text-brand-light text-xl"></i>
+                <div>
+                  <p
+                    class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider"
+                  >
+                    Aspiring
+                  </p>
+                  <p class="text-sm font-bold text-gray-900 dark:text-white">
+                    Frontend Developer
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-    <!-- About End -->
 
-    <!-- Projects Section Start -->
-    <section id="projects" class="pt-20 pb-20">
-            <div class="container mx-auto">
-                <div class="w-full px4">
-                    <div class="max-w-xl mx-auto text-center mb-16">
-                        <h4 class="font-semibold text-xl text-primary mb-2 md:text-2xl lg:text-3xl pt-10">Projects</h4>
-                        <p class="font-medium text-base md:text-lg lg:text-2xl text-secondary">Kumpulan project yang saya buat untuk melatih
-                            kemampuan saya dalam membangun website dan aplikasi sederhana. Setiap project memiliki fokus
-                            pembelajaran yang berbeda-beda</p>
-                    </div>
-                </div>
-                <div class="w-full px-4 flex flex-wrap justify-center xl:w-10/12 xl:mx-auto">
-                    <div class="mb-12 p-4 md:w-1/2">
-                        <div
-                            class="border border-slate-200 rounded-md shadow-xl/20 overflow-hidden scale-100 hover:scale-[1.02] transition duration-300 ease-in-out">
-                            <a href="https://fakhridhogunawan73.github.io/" target="_blank"><img src="assets/images/project1.png" alt="projects1" class="w-full aspect-video object-fit"></a> 
-                        </div>
-                        <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Project Pertama</h3>
-                        <p class="font-medium text-base md:text-lg lg:text-2xl text-secondary">Website portfolio pribadi yang dibuat untuk menampilkan profil, keterampilan, proyek, dan perjalanan saya sebagai seorang Frontend Developer.</p>
-                    </div>
-                    <div class="mb-12 p-4 md:w-1/2">
-                        <div
-                            class="border border-slate-200 rounded-md shadow-xl/20 overflow-hidden scale-100 hover:scale-[1.02] transition duration-300 ease-in-out">
-                            <a href="https://revou-fsse-oct25.github.io/milestone-2-FakhridhoGunawan73/" target="_blank"><img src="assets/images/project2.png" alt="projects2" class="w-full aspect-video object-fit"></a>
-                        </div>
-                        <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Project Kedua</h3>
-                        <p class="font-medium text-base md:text-lg lg:text-2xl text-secondary">Website game sederhana yang memungkinkan pengguna memainkan berbagai permainan interaktif untuk menguji kemampuan dan bersenang-senang.</p>
-                    </div>
-                    <div class="mb-12 p-4 md:w-1/2">
-                        <div
-                            class="border border-slate-200 rounded-md shadow-xl/20 overflow-hidden scale-100 hover:scale-[1.02] transition duration-300 ease-in-out">
-                            <a href="https://milestone-3-fakhridho-gunawan73.vercel.app/" target="_blank"><img src="assets/images/project3.png" alt="projects3" class="w-full aspect-video object-fit"></a>
-                        </div>
-                        <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Project Ketiga</h3>
-                        <p class="font-medium text-base md:text-lg lg:text-2xl text-secondary">Website e-commerce sederhana yang memungkinkan pengguna melihat berbagai produk, melihat detail produk, dan menambahkan produk ke keranjang belanja.</p>
-                    </div>
-                    <div class="mb-12 p-4 md:w-1/2">
-                        <div
-                            class="border border-slate-200 rounded-md shadow-xl/20 overflow-hidden scale-100 hover:scale-[1.02] transition duration-300 ease-in-out">
-                            <a href="https://crack-fe-fakhridhogunawan73.vercel.app/" target="_blank"><img src="assets/images/project4.png" alt="projects4" class="w-full aspect-video object-fit"></a>
-                        </div>
-                        <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Project Keempat</h3>
-                        <p class="font-medium text-base md:text-lg lg:text-2xl text-secondary">Aplikasi full-stack untuk mencari dan melakukan booking kamar kost. Pengguna dapat melihat informasi kamar dan melakukan pemesanan, sedangkan pemilik dapat mengelola kost, kamar, dan booking.</p>
-                    </div>
-                </div>
+    <!-- About Section -->
+    <section id="about" class="py-24 relative z-10">
+      <div class="container mx-auto px-6">
+        <h2
+          class="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white reveal"
+        >
+          <span class="text-gradient">About</span> Me
+        </h2>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div
+            class="reveal relative group rounded-2xl overflow-hidden shadow-xl"
+            data-tilt
+            data-tilt-max="5"
+            data-tilt-speed="400"
+            data-tilt-glare
+            data-tilt-max-glare="0.2"
+          >
+            <div
+              class="absolute inset-0 border border-white/20 rounded-2xl z-20 pointer-events-none"
+            ></div>
+            <img
+              src="images/Profile1.JPG"
+              alt="Fakhridho Gunawan Profile"
+              class="w-full rounded-2xl filter brightness-100 dark:brightness-90 group-hover:brightness-100 transition-all duration-500 transform group-hover:scale-105"
+            />
+          </div>
+
+          <div
+            class="reveal glass-card bg-white/60 dark:bg-black/40 border border-gray-200 dark:border-white/10 p-8 rounded-3xl shadow-lg dark:shadow-none"
+          >
+            <h3
+              class="font-display text-2xl font-bold mb-6 text-gray-900 dark:text-white"
+            >
+              A Passionate Frontend Developer
+            </h3>
+            <p
+              class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed text-lg font-light"
+            >
+              I'm a Frontend Developer and an Informatics Engineering graduate
+              with a passion for building web applications that are useful and
+              meaningful to people. I enjoy turning ideas into interactive and
+              user-friendly experiences while continuously improving my
+              technical skills and exploring new technologies.
+            </p>
+            <p
+              class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-lg font-light"
+            >
+              With a strong sense of responsibility and persistence, I'm
+              committed to learning, solving problems, and contributing
+              positively to a collaborative team. My goal is to grow into a
+              competent developer who builds impactful digital solutions and
+              creates value through technology.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div
+                class="glass-card bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-4 rounded-xl flex flex-col items-center justify-center text-center hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="fas fa-computer text-brand-light text-3xl mb-3"></i>
+                <p
+                  class="font-bold text-sm text-gray-900 dark:text-white tracking-wide"
+                >
+                  Frontend Dev
+                </p>
+              </div>
+              <div
+                class="glass-card bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-4 rounded-xl flex flex-col items-center justify-center text-center hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fas fa-code text-blue-500 dark:text-blue-400 text-3xl mb-3"
+                ></i>
+                <p
+                  class="font-bold text-sm text-gray-900 dark:text-white tracking-wide"
+                >
+                  Web Dev
+                </p>
+              </div>
+              <div
+                class="glass-card bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-4 rounded-xl flex flex-col items-center justify-center text-center hover:bg-gray-100 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fas fa-lightbulb text-blue-500 dark:text-blue-400 text-3xl mb-3"
+                ></i>
+                <p
+                  class="font-bold text-sm text-gray-900 dark:text-white tracking-wide"
+                >
+                  Learning
+                </p>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <!-- Projects Section End -->
 
-    <!-- Contact Section Start -->
-    <section id="contact" class="pt-20 pb-20">
-        <div class="container mx-auto">
-            <div class="w-full px-4">
-                <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2 md:text-2xl lg:text-3xl">Contact</h4>
-                    <h2 class="font-bold text-dark text-2xl mb-4 sm:text-2xl md:text-3xl lg:text-4xl">Hubungi Saya</h2>
-                    <p class="font-medium text-md text-secondary">Jika Anda memiliki pertanyaan, masukan, atau ingin
-                        bekerja sama dengan saya, jangan ragu untuk menghubungi saya melalui form di bawah ini. Saya
-                        akan merespons secepat mungkin.</p>
-                </div>
+    <!-- Skills Section -->
+
+    <section id="skills" class="py-24 relative z-10">
+      <div class="container mx-auto px-6">
+        <!-- Section Heading -->
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-4xl font-bold mb-4">
+            My <span class="text-brand-light">Skills</span>
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Technologies and tools I use to build web applications.
+          </p>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Frontend Development -->
+          <div
+            class="reveal glass-card bg-white/60 dark:bg-black/40 border border-gray-200 dark:border-white/10 p-8 rounded-3xl shadow-lg dark:shadow-none"
+          >
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa-solid fa-laptop-code mr-3 text-brand-light"></i>
+              Frontend Development
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
+              Building interactive and responsive user interfaces with modern
+              web technologies.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <!-- JavaScript -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-javascript-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  JavaScript
+                </p>
+              </div>
+
+              <!-- TypeScript -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-typescript-plain colored text-3xl"></i>
+
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  TypeScript
+                </p>
+              </div>
+
+              <!-- HTML5 -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-html5-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  HTML5
+                </p>
+              </div>
+
+              <!-- CSS3 -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-css3-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  CSS3
+                </p>
+              </div>
+
+              <!-- React -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-react-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  React
+                </p>
+              </div>
+
+              <!-- Next.js -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-nextjs-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Next.js
+                </p>
+              </div>
+
+              <!-- Tailwind CSS -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-tailwindcss-original colored text-3xl"></i>
+
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Tailwind CSS
+                </p>
+              </div>
             </div>
-            <form id="contact-form">
-                <input type="hidden" name="access_key" value="f9cf7dbd-81e2-4ea4-9ab8-64168be8d7eb">
-                <input type="hidden" name="subject" value="Pesan baru dari Portfolio">
-                <div class="w-full md:w-1/2 lg:w-2/3 mx-auto">
-                    <div class="w-full px-4 mb-8">
-                        <label for="name" class="text-base font-semibold text-primary">Nama</label>
-                        <input type="text" name="name" id="name"
-                            class="w-full bg-slate-300 text-dark rounded-sm focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary p-2"
-                            placeholder="Enter Your Name...." required>
-                    </div>
-                    <div class="w-full px-4 mb-8">
-                        <label for="email" class="text-base font-semibold text-primary">Email</label>
-                        <input type="email" name="email" id="email"
-                            class="w-full bg-slate-300 text-dark rounded-sm focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary p-2"
-                            placeholder="Enter Your Email...." required>
-                    </div>
-                    <div class="w-full px-4 mb-8">
-                        <label for="message" class="text-base font-semibold text-primary">Pesan</label>
-                        <textarea name="message" id="message" required
-                            class="w-full bg-slate-300 text-dark rounded-sm focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32 p-3"
-                            placeholder="Write Your message for me...."></textarea>
-                    </div>
-                    <div class="w-full px-4 mx-auto">
-                        <button
-                            class="text-base font-semibold text-white bg-gradient-to-r from-red-900 via-red-600 to-red-900 rounded-full py-2 px-6 w-full hover:opacity-80 hover:shadow-lg hover:text-dark transition duration-300">Kirim</button>
-                    </div>
+          </div>
+
+          <!-- Backend & Database -->
+          <div
+            class="reveal glass-card bg-white/60 dark:bg-black/40 border border-gray-200 dark:border-white/10 p-8 rounded-3xl shadow-lg dark:shadow-none"
+          >
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa-solid fa-server mr-3 text-brand-light"></i>
+              Backend & Database
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
+              Developing server-side features, APIs, authentication, and
+              managing application data.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <!-- Node.js -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fa-brands fa-node-js text-3xl text-green-500 mb-2"
+                ></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Node.js
+                </p>
+              </div>
+
+              <!-- NestJS -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-nestjs-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  NestJS
+                </p>
+              </div>
+
+              <!-- REST API -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="fa-solid fa-plug text-3xl text-purple-500 mb-2"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  REST API
+                </p>
+              </div>
+
+              <!-- JWT -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-3xl text-green-500 mb-2"
+                ></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  JWT Auth
+                </p>
+              </div>
+
+              <!-- PostgreSQL -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-postgresql-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  PostgreSQL
+                </p>
+              </div>
+
+              <!-- Prisma ORM -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-prisma-original text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Prisma ORM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools & Deployment -->
+          <div
+            class="reveal glass-card md:col-span-2 bg-white/60 dark:bg-black/40 border border-gray-200 dark:border-white/10 p-8 rounded-3xl shadow-lg dark:shadow-none"
+          >
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <i class="fa-solid fa-toolbox mr-3 text-brand-light"></i>
+              Tools & Deployment
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
+              Tools that support my development workflow, collaboration, and
+              application deployment.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+              <!-- Git -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fa-brands fa-git-alt text-3xl text-orange-500 mb-2"
+                ></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Git
+                </p>
+              </div>
+
+              <!-- GitHub -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i
+                  class="fa-brands fa-github text-3xl text-black dark:text-white mb-2"
+                ></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  GitHub
+                </p>
+              </div>
+
+              <!-- VS Code -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-vscode-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  VS Code
+                </p>
+              </div>
+
+              <!-- Postman -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-postman-plain colored text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Postman
+                </p>
+              </div>
+
+              <!-- Prisma Studio -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-prisma-original text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Prisma Studio
+                </p>
+              </div>
+
+              <!-- Vercel -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-vercel-original text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Vercel
+                </p>
+              </div>
+
+              <!-- Railway -->
+              <div
+                class="bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center hover:bg-gray-50 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-none"
+              >
+                <i class="devicon-railway-original text-3xl"></i>
+                <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Railway
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+
+    <!-- PROJECTS SECTION -->
+    <section
+      id="projects"
+      class="py-20 relative z-10 text-gray-900 dark:text-white overflow-hidden transition-colors duration-300"
+    >
+      <div class="container mx-auto px-6">
+        <!-- SECTION TITLE -->
+        <div class="text-center mb-16">
+          <p class="text-brand-light uppercase tracking-[0.3em] text-sm mb-4">
+            My Work
+          </p>
+
+          <h2
+            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
+          >
+            Featured Projects
+          </h2>
+
+          <p class="text-gray-600 dark:text-gray-400 mt-4">
+            Explore some of my recent projects.
+          </p>
+        </div>
+
+        <!-- CAROUSEL -->
+        <div class="gallery relative h-[580px] md:h-[650px]">
+          <!-- CARDS -->
+          <ul class="cards relative w-full h-full list-none p-0 m-0">
+            <!-- KOSTIFY -->
+            <li class="project-card">
+              <div
+                class="glass-card h-full rounded-3xl border border-blue-500/30 bg-white/80 dark:bg-[#0B1728] p-7 md:p-10 flex flex-col shadow-xl shadow-blue-500/5 dark:shadow-2xl dark:shadow-blue-500/10 transition-colors duration-300"
+              >
+                <div class="flex justify-between items-center mb-8">
+                  <span class="text-sm text-blue-400 font-semibold">
+                    FULL STACK PROJECT
+                  </span>
+
+                  <span class="text-gray-500 text-sm">01</span>
                 </div>
+
+                <div class="mb-8">
+                  <h3 class="text-3xl md:text-4xl font-bold mb-4">Kostify</h3>
+
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    A full-stack boarding house booking management application
+                    that connects tenants and property owners.
+                  </p>
+                </div>
+
+                <div class="mb-8">
+                  <p class="text-sm text-gray-500 mb-3">TECH STACK</p>
+
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-3 py-2 rounded-lg bg-blue-500/10 text-blue-300 text-sm"
+                      >Next.js</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-blue-500/10 text-blue-300 text-sm"
+                      >TypeScript</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-blue-500/10 text-blue-300 text-sm"
+                      >NestJS</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-blue-500/10 text-blue-300 text-sm"
+                      >Prisma</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-blue-500/10 text-blue-300 text-sm"
+                      >PostgreSQL</span
+                    >
+                  </div>
+                </div>
+
+                <!-- PROJECT ACTIONS -->
+
+                <!-- PROJECT LINKS -->
+                <div class="flex flex-wrap gap-4 mt-8">
+                  <!-- LIVE DEMO -->
+                  <a
+                    href="https://crack-fe-fakhridhogunawan73.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-blue-500 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition"
+                  >
+                    Live Demo
+                    <span>↗</span>
+                  </a>
+
+                  <!-- GITHUB -->
+                  <a
+                    href="https://github.com/fakhridhogunawan73"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    GitHub Repository
+                    <span>↗</span>
+                  </a>
+
+                  <!-- EXPLORE PROJECT -->
+                  <a
+                    href="projects/kostify.html"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    Explore Project ↓
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <!-- REVOSHOP -->
+            <li class="project-card">
+              <div
+                class="glass-card h-full rounded-3xl border border-cyan-500/30 bg-white/80 dark:bg-[#0B1728] p-7 md:p-10 flex flex-col shadow-xl shadow-cyan-500/5 dark:shadow-2xl dark:shadow-cyan-500/10 transition-colors duration-300"
+              >
+                <div class="flex justify-between items-center mb-8">
+                  <span class="text-sm text-cyan-400 font-semibold">
+                    FRONTEND PROJECT
+                  </span>
+
+                  <span class="text-gray-500 text-sm">02</span>
+                </div>
+
+                <div class="mb-8">
+                  <h3 class="text-3xl md:text-4xl font-bold mb-4">RevoShop</h3>
+
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    An e-commerce website designed to provide a simple and
+                    user-friendly shopping experience.
+                  </p>
+                </div>
+
+                <div class="mb-8">
+                  <p class="text-sm text-gray-500 mb-3">TECH STACK</p>
+
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-3 py-2 rounded-lg bg-cyan-500/10 text-cyan-300 text-sm"
+                      >Next.js</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-cyan-500/10 text-cyan-300 text-sm"
+                      >TypeScript</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-cyan-500/10 text-cyan-300 text-sm"
+                      >Tailwind CSS</span
+                    >
+                  </div>
+                </div>
+
+                <!-- PROJECT ACTIONS -->
+                <div class="flex flex-wrap gap-4 mt-8">
+                  <!-- LIVE DEMO -->
+                  <a
+                    href="https://milestone-3-fakhridho-gunawan73.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-cyan-300 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition"
+                  >
+                    Live Demo
+                    <span>↗</span>
+                  </a>
+
+                  <!-- GITHUB -->
+                  <a
+                    href="https://github.com/Revou-FSSE-Oct25/milestone-3-FakhridhoGunawan73"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    GitHub Repository
+                    <span>↗</span>
+                  </a>
+
+                  <!-- EXPLORE PROJECT -->
+                  <a
+                    href="projects/revoshop.html"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    Explore Project ↓
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <!-- REVOFUN -->
+            <li class="project-card">
+              <div
+                class="glass-card h-full rounded-3xl border border-purple-500/30 bg-white/80 dark:bg-[#0B1728] p-7 md:p-10 flex flex-col shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-500/10 transition-colors duration-300"
+              >
+                <div class="flex justify-between items-center mb-8">
+                  <span class="text-sm text-purple-400 font-semibold">
+                    WEB GAME PROJECT
+                  </span>
+
+                  <span class="text-gray-500 text-sm">03</span>
+                </div>
+
+                <div class="mb-8">
+                  <h3 class="text-3xl md:text-4xl font-bold mb-4">RevoFun</h3>
+
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    A collection of interactive browser games built with
+                    fundamental web technologies.
+                  </p>
+                </div>
+
+                <div class="mb-8">
+                  <p class="text-sm text-gray-500 mb-3">TECH STACK</p>
+
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-3 py-2 rounded-lg bg-purple-500/10 text-purple-300 text-sm"
+                      >HTML5</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-purple-500/10 text-purple-300 text-sm"
+                      >CSS3</span
+                    >
+                    <span
+                      class="px-3 py-2 rounded-lg bg-purple-500/10 text-purple-300 text-sm"
+                      >JavaScript</span
+                    >
+                  </div>
+                </div>
+
+                <!-- PROJECT ACTIONS -->
+                <div class="flex flex-wrap gap-4 mt-8">
+                  <!-- LIVE DEMO -->
+                  <a
+                    href="https://revou-fsse-oct25.github.io/milestone-2-FakhridhoGunawan73/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-cyan-300 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition"
+                  >
+                    Live Demo
+                    <span>↗</span>
+                  </a>
+
+                  <!-- GITHUB -->
+                  <a
+                    href="https://github.com/Revou-FSSE-Oct25/milestone-2-FakhridhoGunawan73"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    GitHub Repository
+                    <span>↗</span>
+                  </a>
+
+                  <!-- EXPLORE PROJECT -->
+                  <a
+                    href="projects/revofun.html"
+                    class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white px-6 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                  >
+                    Explore Project ↓
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- NAVIGATION -->
+          <div
+            class="actions absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-5 z-20"
+          >
+            <button
+              class="prev w-12 h-12 rounded-full border border-gray-300 dark:border-white/20 hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+            >
+              ←
+            </button>
+
+            <button
+              class="next w-12 h-12 rounded-full border border-gray-300 dark:border-white/20 hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 relative z-10">
+      <div class="container mx-auto px-6">
+        <h2
+          class="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white reveal"
+        >
+          <span class="text-gradient">Experience</span> Roadmap
+        </h2>
+
+        <div class="max-w-4xl mx-auto relative">
+          <!-- Vertical Line -->
+          <div
+            class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-brand-light via-blue-500 to-transparent"
+          ></div>
+
+          <div class="space-y-12">
+            <!-- Item 1 -->
+            <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-gray-900 border-4 border-gray-200 dark:border-black group-hover:border-brand-light dark:group-hover:border-brand-light transition-colors z-10 shadow-md dark:shadow-[0_0_10px_#3b82f6]"
+              ></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 md:text-right pr-0 md:pr-10">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-brand-light/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <h3
+                    class="text-xl font-display font-bold text-gray-900 dark:text-white mb-1"
+                  >
+                    Teaching Assistant
+                  </h3>
+                  <p
+                    class="text-brand-600 dark:text-brand-light font-medium text-sm mb-3"
+                  >
+                    Universitas Islam Riau
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >May 2023 – Sep 2023</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Assisted lecturers and supported students in understanding
+                    programming concepts, troubleshooting coding errors, and
+                    completing assignments across six classes.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="hidden md:block md:w-5/12"></div>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-gray-900 border-4 border-gray-200 dark:border-black group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-colors z-10 shadow-md dark:shadow-[0_0_10px_#06b6d4]"
+              ></div>
+              <div class="hidden md:block md:w-5/12"></div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 pl-0 md:pl-10 text-left">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-blue-400/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <h3
+                    class="text-xl font-display font-bold text-gray-900 dark:text-white mb-1"
+                  >
+                    Organization Member
+                  </h3>
+                  <p
+                    class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3"
+                  >
+                    HIMATIF
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >2021 – 2022 / 2023 – 2024</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Participated in organizational activities and collaborated
+                    with fellow members in supporting student organization
+                    programs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <!-- <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-500 border-4 border-gray-200 dark:border-black group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-colors z-10 shadow-md dark:shadow-none"
+              ></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 md:text-right pr-0 md:pr-10">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-blue-400/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <h3
+                    class="text-xl font-display font-bold text-gray-900 dark:text-white mb-1"
+                  >
+                    General Member
+                  </h3>
+                  <p
+                    class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3"
+                  >
+                    East West University Robotics Club
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >June 2023 - Dec 2024</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Worked as a general member participating actively in club
+                    events and technical workshops.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="hidden md:block md:w-5/12"></div>
+            </div> -->
+
+            <!-- Item 4 -->
+            <!-- <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-500 border-4 border-gray-200 dark:border-black group-hover:border-yellow-500 dark:group-hover:border-yellow-400 transition-colors z-10 shadow-md dark:shadow-none"
+              ></div>
+              <div class="hidden md:block md:w-5/12"></div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 pl-0 md:pl-10 text-left">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-yellow-400/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <h3
+                    class="text-xl font-display font-bold text-gray-900 dark:text-white mb-1"
+                  >
+                    Marketing and Social Media Manager
+                  </h3>
+                  <p
+                    class="text-yellow-600 dark:text-yellow-400 font-medium text-sm mb-3"
+                  >
+                    Udanto Academy
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >2023 - 2024</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Led marketing campaigns, managed social media presence, and
+                    developed client-focused websites and applications.
+                  </p>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Item 5 -->
+            <!-- <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-500 border-4 border-gray-200 dark:border-black group-hover:border-teal-500 dark:group-hover:border-teal-400 transition-colors z-10 shadow-md dark:shadow-none"
+              ></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 md:text-right pr-0 md:pr-10">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-teal-400/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <h3
+                    class="text-xl font-display font-bold text-gray-900 dark:text-white mb-1"
+                  >
+                    Campus Ambassador
+                  </h3>
+                  <p
+                    class="text-teal-600 dark:text-teal-400 font-medium text-sm mb-3"
+                  >
+                    Bondi Pathshala
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >2021 - 2022</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Represented the organization on campus and promoted learning
+                    initiatives through workshops and events.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="hidden md:block md:w-5/12"></div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 relative z-10">
+      <div class="container mx-auto px-6">
+        <h2
+          class="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white reveal"
+        >
+          <span class="text-gradient">Education</span>
+        </h2>
+
+        <div class="max-w-4xl mx-auto relative">
+          <!-- Vertical Line -->
+          <div
+            class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-brand-light via-blue-500 to-transparent"
+          ></div>
+
+          <div class="space-y-12">
+            <!-- Item 1 -->
+            <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-gray-900 border-4 border-gray-200 dark:border-black group-hover:border-brand-light dark:group-hover:border-brand-light transition-colors z-10 shadow-md dark:shadow-[0_0_10px_#3b82f6]"
+              ></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 md:text-right pr-0 md:pr-10">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-brand-light/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <div class="flex items-center justify-end gap-3 mb-2">
+                    <img
+                      src="images/Universitas_Islam_Riau.png"
+                      alt="Logo UIR"
+                      class="w-11 h-11 object-contain shrink-0"
+                    />
+
+                    <h3
+                      class="text-xl font-display font-bold text-gray-900 dark:text-white"
+                    >
+                      Bachelor of Informatics Engineering
+                    </h3>
+                  </div>
+                  <p
+                    class="text-brand-600 dark:text-brand-light font-medium text-sm mb-3"
+                  >
+                    Universitas Islam Riau
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >Sep 2019 – Okt 2024</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Focused on software development, programming, database
+                    management, and computer science fundamentals.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="hidden md:block md:w-5/12"></div>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="relative flex items-center md:justify-between group reveal"
+            >
+              <div
+                class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-white dark:bg-gray-900 border-4 border-gray-200 dark:border-black group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-colors z-10 shadow-md dark:shadow-[0_0_10px_#06b6d4]"
+              ></div>
+              <div class="hidden md:block md:w-5/12"></div>
+              <div class="hidden md:block md:w-2/12"></div>
+              <div class="ml-16 md:ml-0 md:w-5/12 pl-0 md:pl-10 text-left">
+                <div
+                  class="glass-card bg-white/80 dark:bg-black/40 p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-blue-400/50 transition-colors shadow-sm dark:shadow-none"
+                >
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3
+                      class="text-xl font-display font-bold text-gray-900 dark:text-white"
+                    >
+                      Full Stack Software Engineering
+                    </h3>
+
+                    <img
+                      src="images/Logo-RevoU.png"
+                      alt="Logo RevoU"
+                      class="w-10 h-10 object-contain shrink-0"
+                    />
+                  </div>
+
+                  <p
+                    class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3"
+                  >
+                    REVOU
+                  </p>
+                  <span
+                    class="inline-block px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-xs text-gray-600 dark:text-gray-400 mb-3 border border-gray-200 dark:border-white/5"
+                    >Oct 2025 – May 2026</span
+                  >
+                  <p
+                    class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-light"
+                  >
+                    Completed a full-stack software engineering program covering
+                    frontend and backend development, API integration, and
+                    project development.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative z-10">
+      <div class="container mx-auto px-6">
+        <h2
+          class="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white reveal"
+        >
+          Let's <span class="text-gradient">Connect</span>
+        </h2>
+
+        <div class="max-w-5xl mx-auto grid lg:grid-cols-5 gap-12">
+          <!-- Info -->
+          <div class="lg:col-span-2 reveal">
+            <h3
+              class="font-display text-3xl font-bold mb-6 text-gray-900 dark:text-white"
+            >
+              Reach Out
+            </h3>
+            <p
+              class="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-light"
+            >
+              I'm currently looking for new opportunities and collaborations.
+              Whether you have a question, a project idea, or just want to say
+              hi, my inbox is always open!
+            </p>
+
+            <div class="space-y-6">
+              <div class="flex items-center group">
+                <div
+                  class="w-12 h-12 rounded-full glass-card border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-transparent flex items-center justify-center text-brand-600 dark:text-brand-light group-hover:bg-brand-600 group-hover:text-white dark:group-hover:bg-brand-light dark:group-hover:text-white transition-all mr-5 shadow-sm dark:shadow-[0_0_15px_rgba(168,85,247,0.1)]"
+                >
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1"
+                  >
+                    Email
+                  </p>
+                  <p class="text-gray-900 dark:text-white font-medium">
+                    fakhridhogunawan01@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center group">
+                <div
+                  class="w-12 h-12 rounded-full glass-card border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-transparent flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-400 dark:group-hover:text-white transition-all mr-5 shadow-sm dark:shadow-[0_0_15px_rgba(236,72,153,0.1)]"
+                >
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1"
+                  >
+                    Location
+                  </p>
+                  <p class="text-gray-900 dark:text-white font-medium">
+                    Pekanbaru, Riau
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div
+            class="lg:col-span-3 reveal glass-card bg-white/60 dark:bg-black/40 p-8 sm:p-10 rounded-3xl border border-gray-200 dark:border-white/10 relative overflow-hidden shadow-lg dark:shadow-none"
+          >
+            <!-- Glow effect behind form -->
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-brand-light opacity-20 dark:opacity-10 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"
+            ></div>
+
+            <form id="contact-form" class="space-y-5">
+              <input
+                type="hidden"
+                name="access_key"
+                value="f9cf7dbd-81e2-4ea4-9ab8-64168be8d7eb"
+              />
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    class="w-full px-5 py-4 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-brand-light focus:ring-1 focus:ring-brand-light transition-all shadow-sm dark:shadow-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    class="w-full px-5 py-4 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-brand-light focus:ring-1 focus:ring-brand-light transition-all shadow-sm dark:shadow-none"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  class="w-full px-5 py-4 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-brand-light focus:ring-1 focus:ring-brand-light transition-all shadow-sm dark:shadow-none"
+                  required
+                />
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  rows="5"
+                  class="w-full px-5 py-4 bg-white/80 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-brand-light focus:ring-1 focus:ring-brand-light transition-all resize-none shadow-sm dark:shadow-none"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-gray-900 text-white dark:bg-white dark:text-black font-bold py-4 rounded-xl hover:bg-brand-600 dark:hover:bg-gray-200 transition-all transform hover:scale-[1.02] shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              >
+                Send Message
+              </button>
             </form>
+            <div
+              id="form-message"
+              class="mt-4 text-sm hidden font-medium text-center rounded-xl py-3 border"
+            ></div>
+          </div>
         </div>
+      </div>
     </section>
-    <!-- Contact Section End -->
 
-    <!-- Footer Start -->
-    <footer class="bg-dark pt-10 pb-10">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap">
-                <div class="w-full px-4 mb-8 text-slate-400 font-medium md:w-1/3">
-                    <h2 class="font-bold text-2xl text-white mb-5">Portfolio Saya</h2>
-                    <h3 class="font-bold text-xl text-white mb-3">Hubungi Saya</h3>
-                    <p>fakhridhogunawan01@gmail.com</p>
-                    <p>Jl. DI. Panjaitan</p>
-                    <p>Bangkinang</p>
-                </div>
-                <div class="w-full px-4 mb-8 md:w-1/3">
-                    <h3 class="font-semibold text-xl text-white mb-5">Tautan</h3>
-                    <ul class="text-slate-400">
-                        <li class="w-5 mb-2 hover:translate-x-3 duration-300 ease-in-out"><a href="#home"
-                                class="inlane-block text-base hover:text-primary">Home</a></li>
-                        <li class="w-5 mb-2 hover:translate-x-3 duration-300 ease-in-out"><a href="#about"
-                                class="inlane-block text-base hover:text-primary">About</a>
-                        </li>
-                        <li class="w-5 mb-2 hover:translate-x-3 duration-300 ease-in-out"><a href="#projects"
-                                class="inlane-block text-base hover:text-primary">Projects</a></li>
-                        <li class="w-5 mb-2 hover:translate-x-3 duration-300 ease-in-out"><a href="#contact"
-                                class="inlane-block text-base hover:text-primary">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="w-full px-4 mb-8 md:w-1/3">
-                    <h3 class="font-semibold text-xl text-white mb-5">Ikuti Saya</h3>
-                    <div class="flex items-center gap-3">
-                        <a href="https://github.com/FakhridhoGunawan73" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-white fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2.24902C6.51613 2.24902 2 6.70064 2 12.249C2 16.6361 4.87097 20.3781 8.87097 21.7329C9.3871 21.8297 9.54839 21.5071 9.54839 21.2813C9.54839 21.0555 9.54839 20.4103 9.51613 19.5393C6.74194 20.1845 6.16129 18.1845 6.16129 18.1845C5.70968 17.0555 5.03226 16.7329 5.03226 16.7329C4.12903 16.0877 5.06452 16.0877 5.06452 16.0877C6.06452 16.12 6.6129 17.12 6.6129 17.12C7.48387 18.6684 8.96774 18.2168 9.51613 17.9264C9.6129 17.2813 9.87097 16.8297 10.1613 16.5716C7.96774 16.3458 5.6129 15.4748 5.6129 11.6684C5.6129 10.5716 6.03226 9.70064 6.64516 9.02322C6.54839 8.79741 6.19355 7.76515 6.74194 6.37806C6.74194 6.37806 7.6129 6.11999 9.51613 7.41031C10.3226 7.18451 11.1613 7.05548 12.0323 7.05548C12.9032 7.05548 13.7742 7.15225 14.5484 7.41031C16.4516 6.15225 17.2903 6.37806 17.2903 6.37806C17.8387 7.73289 17.5161 8.79741 17.3871 9.02322C18.0323 9.70064 18.4194 10.6039 18.4194 11.6684C18.4194 15.4748 16.0645 16.3458 13.871 16.5716C14.2258 16.8942 14.5484 17.5393 14.5484 18.4426C14.5484 19.7974 14.5161 20.8619 14.5161 21.1845C14.5161 21.4426 14.7097 21.7329 15.1935 21.6361C19.129 20.3135 22 16.6039 22 12.1845C21.9677 6.70064 17.4839 2.24902 12 2.24902Z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/fakhridhognwn" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-white fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.6672 12C8.6672 10.1591 10.1591 8.6664 12 8.6664C13.8409 8.6664 15.3336 10.1591 15.3336 12C15.3336 13.8409 13.8409 15.3336 12 15.3336C10.1591 15.3336 8.6672 13.8409 8.6672 12ZM6.86512 12C6.86512 14.836 9.164 17.1349 12 17.1349C14.836 17.1349 17.1349 14.836 17.1349 12C17.1349 9.164 14.836 6.86512 12 6.86512C9.164 6.86512 6.86512 9.164 6.86512 12ZM16.1382 6.66152C16.1381 6.89886 16.2084 7.13089 16.3401 7.32829C16.4719 7.52568 16.6593 7.67956 16.8785 7.77047C17.0977 7.86138 17.339 7.88525 17.5718 7.83904C17.8046 7.79283 18.0185 7.67862 18.1863 7.51087C18.3542 7.34311 18.4686 7.12934 18.515 6.89658C18.5614 6.66382 18.5377 6.42253 18.447 6.20322C18.3563 5.98392 18.2025 5.79644 18.0052 5.6645C17.808 5.53257 17.576 5.4621 17.3386 5.462H17.3382C17.02 5.46215 16.715 5.58856 16.49 5.81347C16.265 6.03837 16.1384 6.34339 16.1382 6.66152ZM7.96 20.1398C6.98504 20.0954 6.45512 19.933 6.10296 19.7958C5.63608 19.614 5.30296 19.3975 4.95272 19.0478C4.60248 18.698 4.38568 18.3652 4.20472 17.8983C4.06744 17.5463 3.90504 17.0162 3.86072 16.0413C3.81224 14.9872 3.80256 14.6706 3.80256 12.0001C3.80256 9.3296 3.81304 9.01384 3.86072 7.95888C3.90512 6.98392 4.06872 6.45488 4.20472 6.10184C4.38648 5.63496 4.60296 5.30184 4.95272 4.9516C5.30248 4.60136 5.63528 4.38456 6.10296 4.2036C6.45496 4.06632 6.98504 3.90392 7.96 3.8596C9.01408 3.81112 9.33072 3.80144 12 3.80144C14.6693 3.80144 14.9862 3.81192 16.0412 3.8596C17.0162 3.904 17.5452 4.0676 17.8982 4.2036C18.3651 4.38456 18.6982 4.60184 19.0485 4.9516C19.3987 5.30136 19.6147 5.63496 19.7965 6.10184C19.9338 6.45384 20.0962 6.98392 20.1405 7.95888C20.189 9.01384 20.1986 9.3296 20.1986 12.0001C20.1986 14.6706 20.189 14.9863 20.1405 16.0413C20.0961 17.0162 19.9329 17.5462 19.7965 17.8983C19.6147 18.3652 19.3982 18.6983 19.0485 19.0478C18.6987 19.3972 18.3651 19.614 17.8982 19.7958C17.5462 19.933 17.0162 20.0954 16.0412 20.1398C14.9871 20.1882 14.6705 20.1979 12 20.1979C9.32952 20.1979 9.01376 20.1882 7.96 20.1398ZM7.8772 2.06056C6.81264 2.10904 6.0852 2.27784 5.44992 2.52504C4.792 2.78032 4.23504 3.1228 3.67848 3.67848C3.12192 4.23416 2.78032 4.792 2.52504 5.44992C2.27784 6.0856 2.10904 6.81264 2.06056 7.8772C2.01128 8.94344 2 9.28432 2 12C2 14.7157 2.01128 15.0566 2.06056 16.1228C2.10904 17.1874 2.27784 17.9144 2.52504 18.5501C2.78032 19.2076 3.122 19.7661 3.67848 20.3215C4.23496 20.877 4.792 21.219 5.44992 21.475C6.0864 21.7222 6.81264 21.891 7.8772 21.9394C8.944 21.9879 9.28432 22 12 22C14.7157 22 15.0566 21.9887 16.1228 21.9394C17.1874 21.891 17.9144 21.7222 18.5501 21.475C19.2076 21.219 19.765 20.8772 20.3215 20.3215C20.8781 19.7658 21.219 19.2076 21.475 18.5501C21.7222 17.9144 21.8918 17.1874 21.9394 16.1228C21.9879 15.0558 21.9992 14.7157 21.9992 12C21.9992 9.28432 21.9879 8.94344 21.9394 7.8772C21.891 6.81256 21.7222 6.0852 21.475 5.44992C21.219 4.7924 20.8772 4.23504 20.3215 3.67848C19.7658 3.12192 19.2076 2.78032 18.5509 2.52504C17.9144 2.27784 17.1874 2.10824 16.1236 2.06056C15.0574 2.01208 14.7165 2 12.0008 2C9.28512 2 8.944 2.01128 7.8772 2.06056Z" />
-                                <path
-                                    d="M8.6672 12C8.6672 10.1591 10.1591 8.6664 12 8.6664C13.8409 8.6664 15.3336 10.1591 15.3336 12C15.3336 13.8409 13.8409 15.3336 12 15.3336C10.1591 15.3336 8.6672 13.8409 8.6672 12ZM6.86512 12C6.86512 14.836 9.164 17.1349 12 17.1349C14.836 17.1349 17.1349 14.836 17.1349 12C17.1349 9.164 14.836 6.86512 12 6.86512C9.164 6.86512 6.86512 9.164 6.86512 12ZM16.1382 6.66152C16.1381 6.89886 16.2084 7.13089 16.3401 7.32829C16.4719 7.52568 16.6593 7.67956 16.8785 7.77047C17.0977 7.86138 17.339 7.88525 17.5718 7.83904C17.8046 7.79283 18.0185 7.67862 18.1863 7.51087C18.3542 7.34311 18.4686 7.12934 18.515 6.89658C18.5614 6.66382 18.5377 6.42253 18.447 6.20322C18.3563 5.98392 18.2025 5.79644 18.0052 5.6645C17.808 5.53257 17.576 5.4621 17.3386 5.462H17.3382C17.02 5.46215 16.715 5.58856 16.49 5.81347C16.265 6.03837 16.1384 6.34339 16.1382 6.66152ZM7.96 20.1398C6.98504 20.0954 6.45512 19.933 6.10296 19.7958C5.63608 19.614 5.30296 19.3975 4.95272 19.0478C4.60248 18.698 4.38568 18.3652 4.20472 17.8983C4.06744 17.5463 3.90504 17.0162 3.86072 16.0413C3.81224 14.9872 3.80256 14.6706 3.80256 12.0001C3.80256 9.3296 3.81304 9.01384 3.86072 7.95888C3.90512 6.98392 4.06872 6.45488 4.20472 6.10184C4.38648 5.63496 4.60296 5.30184 4.95272 4.9516C5.30248 4.60136 5.63528 4.38456 6.10296 4.2036C6.45496 4.06632 6.98504 3.90392 7.96 3.8596C9.01408 3.81112 9.33072 3.80144 12 3.80144C14.6693 3.80144 14.9862 3.81192 16.0412 3.8596C17.0162 3.904 17.5452 4.0676 17.8982 4.2036C18.3651 4.38456 18.6982 4.60184 19.0485 4.9516C19.3987 5.30136 19.6147 5.63496 19.7965 6.10184C19.9338 6.45384 20.0962 6.98392 20.1405 7.95888C20.189 9.01384 20.1986 9.3296 20.1986 12.0001C20.1986 14.6706 20.189 14.9863 20.1405 16.0413C20.0961 17.0162 19.9329 17.5462 19.7965 17.8983C19.6147 18.3652 19.3982 18.6983 19.0485 19.0478C18.6987 19.3972 18.3651 19.614 17.8982 19.7958C17.5462 19.933 17.0162 20.0954 16.0412 20.1398C14.9871 20.1882 14.6705 20.1979 12 20.1979C9.32952 20.1979 9.01376 20.1882 7.96 20.1398ZM7.8772 2.06056C6.81264 2.10904 6.0852 2.27784 5.44992 2.52504C4.792 2.78032 4.23504 3.1228 3.67848 3.67848C3.12192 4.23416 2.78032 4.792 2.52504 5.44992C2.27784 6.0856 2.10904 6.81264 2.06056 7.8772C2.01128 8.94344 2 9.28432 2 12C2 14.7157 2.01128 15.0566 2.06056 16.1228C2.10904 17.1874 2.27784 17.9144 2.52504 18.5501C2.78032 19.2076 3.122 19.7661 3.67848 20.3215C4.23496 20.877 4.792 21.219 5.44992 21.475C6.0864 21.7222 6.81264 21.891 7.8772 21.9394C8.944 21.9879 9.28432 22 12 22C14.7157 22 15.0566 21.9887 16.1228 21.9394C17.1874 21.891 17.9144 21.7222 18.5501 21.475C19.2076 21.219 19.765 20.8772 20.3215 20.3215C20.8781 19.7658 21.219 19.2076 21.475 18.5501C21.7222 17.9144 21.8918 17.1874 21.9394 16.1228C21.9879 15.0558 21.9992 14.7157 21.9992 12C21.9992 9.28432 21.9879 8.94344 21.9394 7.8772C21.891 6.81256 21.7222 6.0852 21.475 5.44992C21.219 4.7924 20.8772 4.23504 20.3215 3.67848C19.7658 3.12192 19.2076 2.78032 18.5509 2.52504C17.9144 2.27784 17.1874 2.10824 16.1236 2.06056C15.0574 2.01208 14.7165 2 12.0008 2C9.28512 2 8.944 2.01128 7.8772 2.06056Z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/fakhridho-gunawan" target="_blank"
-                            class="rounded-full flex items-center justify-center text-white border border-slate-400 hover:border-primary hover:bg-primary transition duration-300">
-                            <svg class="w-9 h-9 text-white fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19.7065 3H4.34844C3.62264 3 3.04199 3.58065 3.04199 4.30645V19.6935C3.04199 20.3903 3.62264 21 4.34844 21H19.6485C20.3743 21 20.9549 20.4194 20.9549 19.6935V4.27742C21.013 3.58065 20.4323 3 19.7065 3ZM8.35491 18.3H5.71297V9.73548H8.35491V18.3ZM7.01942 8.54516C6.14846 8.54516 5.4807 7.84839 5.4807 7.00645C5.4807 6.16452 6.17749 5.46774 7.01942 5.46774C7.86136 5.46774 8.55813 6.16452 8.55813 7.00645C8.55813 7.84839 7.91942 8.54516 7.01942 8.54516ZM18.371 18.3H15.7291V14.1484C15.7291 13.1613 15.7001 11.8548 14.3356 11.8548C12.942 11.8548 12.7388 12.9581 12.7388 14.0613V18.3H10.0968V9.73548H12.6807V10.9258H12.7097C13.0872 10.229 13.9291 9.53226 15.2356 9.53226C17.9356 9.53226 18.4291 11.2742 18.4291 13.6548V18.3H18.371Z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full pt-10 border-t border-slate-700">
-                <div class="flex items-center justify-center">
-                    <p class="text-lg text-slate-400 items-center">&copy;2026. All right reserved. </p>
-                </div>
-            </div>
+    <footer
+      class="border-t border-gray-200 dark:border-white/10 bg-white/80 dark:bg-black/50 backdrop-blur-lg py-12 relative z-10 mt-12"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2
+          class="font-display text-xl font-bold text-gray-900 dark:text-white mb-6 tracking-widest uppercase"
+        >
+          Fakhridho Gunawan
+        </h2>
+
+        <!-- Restored ALL 5 Social Links for Footer -->
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-8">
+          <a
+            href="https://github.com/FakhridhoGunawan73"
+            target="_blank"
+            class="w-10 h-10 rounded-full glass-card bg-white/60 dark:bg-transparent border border-gray-200 dark:border-transparent flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/30 transition-all"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/fakhridho-gunawan-23045b391/"
+            target="_blank"
+            class="w-10 h-10 rounded-full glass-card bg-white/60 dark:bg-transparent border border-gray-200 dark:border-transparent flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#0a66c2] hover:border-[#0a66c2] dark:hover:text-[#0a66c2] dark:hover:border-white/30 transition-all"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/fakhridhognwn"
+            target="_blank"
+            class="w-10 h-10 rounded-full glass-card bg-white/60 dark:bg-transparent border border-gray-200 dark:border-transparent flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#e1306c] hover:border-[#e1306c] dark:hover:text-[#e1306c] dark:hover:border-white/30 transition-all"
+            ><i class="fab fa-instagram"></i
+          ></a>
         </div>
-        </div>
+
+        <p class="text-sm text-gray-500 font-light">
+          &copy; 2026. All rights reserved.
+        </p>
+      </div>
     </footer>
-    <!-- Footer End  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script src="script.js"></script>
-
-</body>
-
+  </body>
 </html>
