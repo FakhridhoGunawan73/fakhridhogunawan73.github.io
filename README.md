@@ -1,57 +1,74 @@
-# Portfolio Website – Fakhridho Gunawan
+# Fakhridho Gunawan - Personal Portfolio
 
-Website portfolio pribadi yang dibuat menggunakan HTML, Tailwind CSS, dan JavaScript. Website ini menampilkan profil, project yang pernah dibuat, serta formulir kontak untuk pengunjung.
+Welcome to my personal portfolio website! This website showcases my profile, technical skills, projects, and experience as a Frontend Developer.
 
-## 🚀 Fitur
+## Live Demo
 
-- Home / Hero: perkenalan singkat.
-- About: profil dan perjalanan belajar.
-- Projects: daftar project yang pernah dibuat.
-- Contact: formulir kontak menggunakan Web3Forms.
-- Responsive design untuk desktop dan perangkat mobile.
-- Hamburger menu untuk navigasi mobile.
+🌐 **Portfolio Website:**  
+[Visit My Portfolio](https://revou-fsse-oct25.github.io/milestone-1-FakhridhoGunawan73/)
 
-## 🛠️ Teknologi
+## About Me
+
+I am an Informatics Engineering graduate with an interest in Frontend Development and Full-Stack Software Engineering.
+
+I enjoy building responsive, interactive, and user-friendly web applications while continuously improving my technical skills.
+
+## Features
+
+- **Home** – Personal introduction and profile.
+- **About** – Background and development journey.
+- **Skills** – Technical skills and technologies.
+- **Projects** – Showcase of personal and learning projects.
+- **Experience** – Education and professional experience.
+- **Contact** – Contact form powered by Web3Forms.
+- **Responsive Design** – Optimized for desktop and mobile devices.
+- **Dark Mode** – Theme switching functionality.
+
+## Tech Stack
 
 - HTML5
+- CSS3
 - Tailwind CSS
 - JavaScript
-- Git dan GitHub
-- GitHub Pages
 - Web3Forms
 
-## 🌐 Demo Website
+## Featured Projects
 
-[**Lihat Portfolio Online**](https://fakhridhogunawan73.github.io/)
+### Kostify
 
-## 📁 Struktur Project
+A full-stack boarding house booking management application built using Next.js, NestJS, Prisma, and PostgreSQL.
 
-```text
-.
-├── assets/
-│   └── images/
-├── index.html
-├── script.js
-└── README.md
-```
+### RevoShop
 
-## 💻 Menjalankan Project
+An e-commerce website built using Next.js, TypeScript, and Tailwind CSS.
 
-1. Clone repository:
+### RevoFun
 
-   ```bash
-   git clone https://github.com/FakhridhoGunawan73/fakhridhogunawan73.github.io.git
-   ```
+A simple web game developed using HTML, CSS, and JavaScript.
 
-2. Masuk ke folder project:
+## Getting Started
+
+To run this project locally:
+
+1. Clone this repository.
 
    ```bash
-   cd fakhridhogunawan73.github.io
+   git clone https://github.com/Revou-FSSE-Oct25/milestone-1-FakhridhoGunawan73.git
    ```
 
-3. Buka folder tersebut di VS Code.
-4. Jalankan `index.html` menggunakan ekstensi Live Server.
+2. Open the project folder.
 
-## 📬 Kontak
+   ```bash
+   cd milestone-1-FakhridhoGunawan73
+   ```
 
-Silakan hubungi saya melalui formulir kontak yang tersedia di website portfolio.
+3. Open `index.html` in your browser or use the Live Server extension in Visual Studio Code.
+
+## Contact
+
+- **GitHub:** [FakhridhoGunawan73](https://github.com/fakhridhogunawan73)
+- **LinkedIn:** [Fakhridho Gunawan](https://www.linkedin.com/in/fakhridho-gunawan/)
+
+---
+
+© 2026 Fakhridho Gunawan. All rights reserved.
